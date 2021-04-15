@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$quizConfig = $this->helper('Udeytech\FreeSampleQuiz\Helper\Config');
+$config = $this->helper('Udeytech\Totalcustomization\Helper\Config');
+?>
+<div class="total-customization-banner" style="background-image: url('<?php echo $config->getBannerImgSrc(); ?>')">
+    <div class="total-customization-banner-content">
+        <div class="total-customization-banner-title">
+            <span>Total Customization</span>
+            <strong>Create your own makeup look.</strong>
+        </div>
+        <!--<div class="total-customization-banner-description">
+            <?php echo $this->getChildHtml('total_customization_desc_text') ?>
+        </div>-->
+    </div>
+</div>
+<div class="customkit-page">
+    <div class="customkit-page free-sample-page">
+        <?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <?php echo $this->getChildHtml('freekit'); ?>
+        <div class="customkit-page-formula-guide-section">
+            <div class="customkit-page-section-title">
+                <h2><span><?php echo $quizConfig->getFormulaGuideHeaderText(); ?></span></h2>
+            </div>
+            <?php echo $this->getChildHtml('freesample_formula_guide') ?>
+        </div>
+        <div class="customkit-page-skin-type-section">
+            <div class="customkit-page-section-title">
+                <h2><span><?php echo $quizConfig->getSkinTypeInfoHeaderText(); ?></span></h2>
+            </div>
+            <?php echo $this->getChildHtml('freesample_skin_type') ?>
+        </div>
+    </div>
+</div>

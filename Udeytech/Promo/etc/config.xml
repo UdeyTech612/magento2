@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ampromo>
+            <general>
+                <ampromo/>
+                <message/>
+                <prefix/>
+                <auto_add/>
+                <add_nonfree/>
+                <auto_add_downloadable/>
+                <free_shipping/>
+                <calculate_tax/>
+                <apply_to_admin_orders/>
+                <tax_in_subtotal/>
+                <default_currency/>
+            </general>
+            <popup>
+                <mode/>
+                <add_message/>
+                <auto_open_popup/>
+                <multiselect/>
+                <popup_on_checkout/>
+                <block_header/>
+                <messages/>
+            </popup>
+            <limitations>
+                <skip_special_price/>
+                <skip_special_price_configurable/>
+                <skip_promo_item_add/>
+            </limitations>
+            <banners>
+                <mode/>
+                <enabled_top/>
+                <enabled_above_cart/>
+            </banners>
+            <gift_images>
+                <gift_image_width/>
+                <gift_image_height/>
+                <attribute_header/>
+                <attribute_description/>
+            </gift_images>
+        </ampromo>
+    </default>
+</config>

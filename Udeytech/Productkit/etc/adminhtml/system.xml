@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="udeyproductkit" translate="label" sortOrder="9">
+            <label>Udeytech Extensions</label>
+        </tab>
+        <tab id="productkit" translate="label" sortOrder="9">
+            <label>Udeytech Extensions</label>
+        </tab>
+        <section id="productkit" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Product Kit</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_Productkit::config_productkit</resource>
+            <group id="productkit_opt" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Product Kit extension settings</label>
+                <field id="sku" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Hide kit product on save</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If this enabled, products which were added to some kit type will be set
+                                "Not visible individually"]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="productkitsetting" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>ProductKit General Setting</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_Productkit::config_productkit</resource>
+            <group id="productkitset" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Custom Kit Settings</label>
+                <field id="custom_discount" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Discount for Custom Kit</label>
+                </field>
+                <field id="custom_disctype" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Discount Type</label>
+                </field>
+                <field id="custom_productqty" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Products qty in Custom Kit</label>
+                </field>
+                <field id="custom_cmsblock" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Custom Kit CMS Block</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Block</source_model>
+                </field>
+            </group>
+            <group id="productkitfree" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Free Kit Settings</label>
+                <field id="free_productqty" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Products qty in Free Kit</label>
+                </field>
+                <field id="free_minprice" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Min Price for Free Kit</label>
+                </field>
+                <field id="free_cmsblock" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Free Kit CMS Block</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Block</source_model>
+                </field>
+            </group>
+            <group id="kitdiscount1" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Custom Kit Categories</label>
+                <field id="custom_discount1" translate="label comment" type="multiselect" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Udeytech\Productkit\Model\Config\Source\Categorylist</source_model>
+                </field>
+            </group>
+            <group id="kitdiscount2" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Free Kit Categories</label>
+                <field id="custom_discount2" translate="label comment" type="multiselect" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Udeytech\Productkit\Model\Config\Source\Categorylist</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

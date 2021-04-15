@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Udeytech\Instagram\Block\Widget\Feed;
+
+/** @var Feed $block */
+$images = $block->getImages();
+$hashtag = $block->getHashtag();
+?>
+
+<?php if (count($images) || $hashtag) : ?>
+    <div class="udeytech-instagram udeytech-test">
+        <?php if ($block->getTitle()) : ?>
+            <div class="udeytech-instagram-title">
+                <span><?php echo $block->escapeHtml(str_replace('%s', $hashtag, $block->getTitle())) ?></span>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($block->getDescription()) : ?>
+            <div class="udeytech-instagram-description">
+                <span><?php echo nl2br($block->escapeHtml(str_replace('%s', $hashtag, $block->getDescription()))) ?></span>
+            </div>
+        <?php endif; ?>
+
+        <?php if (count($images)): ?>
+            <ul class="udeytech-instagram-list">
+                <?php foreach ($images as $image) : ?>
+                    <li>
+                        <a href="<?php echo $image->getLink(); ?>" target="_blank">
+                            <i class="udeytech-instagram-over"></i>
+                            <img src="<?php echo $image->getUrl(); ?>"
+                                 width="<?php echo intval($block->getImageWidth()) ?>"
+                                 height="<?php echo intval($block->getImageHeight()) ?>"
+                                 alt="<?php echo $block->escapeHtml($image->getName()); ?>"
+                                 title="<?php echo $block->escapeHtml($image->getName()); ?>"/>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

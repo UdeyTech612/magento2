@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Udeytech_MakeupCounter::css/customm.css"/>
+    </head>
+    <referenceContainer name="content">
+        <referenceBlock name="product.info.details" remove="true"/>
+        <referenceBlock name="product.info.overview" remove="true"/>
+        <referenceBlock name="product.media" remove="true"/>
+        <referenceBlock name="product-info-main" remove="true"/>
+        <referenceBlock name="product.info.main" remove="true"/>
+        <referenceBlock name="gallery.placeholder" remove="true"/>
+        <referenceBlock name="gallery-placeholder" remove="true"/>
+        <referenceBlock name="product.info.media" remove="true"/>
+        <block class="Udeytech\MakeupCounter\Block\Makeupcounter" name="makeupcounter"
+               template="Udeytech_MakeupCounter::default.phtml">
+            <block class="Magento\Cms\Block\Block" name="makeup_counter_desc_text">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">makeup-counter-description-text</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="makeup_tips">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">makeup-tips-block</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="deal_of_the_week_prod_img">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">deal-of-the-week-prod-img</argument>
+                </arguments>
+            </block>
+            <block class="Udeytech\MakeupCounter\Block\Lookbook" name="lookbook"
+                   template="Udeytech_MakeupCounter::lookbook.phtml">
+                <block class="Udeytech\MakeupCounter\Block\Lookbook\Productinfo" name="product_info"
+                       template="Udeytech_MakeupCounter::lookbook/productinfo.phtml"/>
+            </block>
+        </block>
+    </referenceContainer>
+</page>

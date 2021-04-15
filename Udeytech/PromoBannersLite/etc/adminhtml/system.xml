@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="udeytech" translate="label" sortOrder="9">
+            <label>udeytech</label>
+        </tab>
+        <section id="utbannerslite" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>Promo Banners Lite</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_PromoBannersLite::config_udeytech_promobannerslite</resource>
+            <group id="banners" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Product Page Banners</label>
+                <field id="enabled_top" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Enable Top Banners</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_above_cart" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Enable After Product Description Banner</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="single" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Show One Banner Only</label>
+                    <comment>Please select `No` to show all banners from matched rules.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="gift_images" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Gift Images</label>
+                <field id="gift_image_width" type="text" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Gift Image Width (px)</label>
+                    <comment/>
+                </field>
+                <field id="gift_image_height" type="text" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Gift Image Height (px)</label>
+                    <comment/>
+                </field>
+                <field id="attribute_header" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Product Attribute for Header</label>
+                    <comment/>
+                    <source_model>Udeytech\PromoBannersLite\Model\Source\Attributes</source_model>
+                </field>
+                <field id="attribute_description" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Product Attribute for Description</label>
+                    <comment/>
+                    <source_model>Udeytech\PromoBannersLite\Model\Source\Attributes</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

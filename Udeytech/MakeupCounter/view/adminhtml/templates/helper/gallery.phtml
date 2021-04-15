@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+/** @var $block \Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery\Content */
+$elementName = $block->getElement()->getName() . '[images]';
+$formName = $block->getFormName();
+?>
+<div class="row">
+    <div class="add-video-button-container">
+        <button id="add_video_button"
+                title="<?php echo $block->escapeHtml(__('Add Video')); ?>"
+                data-role="add-video-button"
+                type="button"
+                class="action-secondary"
+                data-ui-id="widget-button-1">
+            <span><?php echo $block->escapeHtml(__('Add Video')) ?></span>
+        </button>
+    </div>
+</div>
+<?php
+/** @var $block \Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery\Content */
+$element = $block->getElement();
+$elementToggleCode = $element->getToggleCode() ? $element->getToggleCode() : 'toggleValueElements(this, this.parentNode.parentNode.parentNode)';
+?>
+<script>
+    jQuery('body').trigger('contentUpdated');
+</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Udeytech_FreeSampleQuiz::css/custom.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="kit-bundle-cms"/>
+        <referenceContainer name="content">
+            <block class="Magento\Cms\Block\Block" name="4-free-gifts-banner">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">4-free-gifts-banner</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="product.info.details" remove="true"/>
+            <referenceBlock name="product.info.overview" remove="true"/>
+            <referenceBlock name="product.media" remove="true"/>
+            <referenceBlock name="product-info-main" remove="true"/>
+            <referenceBlock name="product.info.main" remove="true"/>
+            <referenceBlock name="gallery.placeholder" remove="true"/>
+            <referenceBlock name="gallery-placeholder" remove="true"/>
+            <referenceBlock name="product.info.media" remove="true"/>
+            <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit"
+                   template="Udeytech_FreeSamplePage::customkit-cms.phtml">
+                <action method="setFspBundleProduct">
+                    <argument name="productId" xsi:type="string">57</argument>
+                </action>
+                <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_items"
+                       template="Udeytech_FreeSamplePage::customkit_cms/items.phtml"/>
+                <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_products"
+                       template="Udeytech_FreeSamplePage::basekit/products.phtml"/>
+                <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_categories"
+                       template="Udeytech_FreeSamplePage::basekit/categories.phtml"/>
+                <block class="Magento\Cms\Block\Block" name="freesample_basekit_desc_text">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">free-samples-basekit-description-text</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

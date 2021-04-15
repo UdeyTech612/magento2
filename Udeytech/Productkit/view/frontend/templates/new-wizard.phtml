@@ -1,0 +1,96 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_kit = $this->getProduct();
+$_kitQty = (int)$_kit->getData('productkit_kit_qty');
+$_bannerImgUrl = $this->helper('Magento\Catalog\Helper\Image')->init($_kit, 'image');
+?>
+<?php if ($_bannerImgUrl): ?>
+    <div class="category-head-container"
+         style="background: url('<?php echo $_bannerImgUrl ?>') no-repeat scroll 0 0 / contain;"></div>
+<?php endif; ?>
+<div class="customkit-page">
+    <?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="customkit-page-title">
+        <h1 itemprop="name"><?php echo __('Everyday Custom Kits') ?></h1>
+    </div>
+    <div class="customkit-page-description">
+        <?php echo $_kit->getDescription(); ?>
+    </div>
+    <div class="customkit-page-content">
+        <div class="customkit-page-choose-kit">
+            <div class="customkit-page-section-title">
+                <h1>
+                    <span><?php echo __('Choose Your Custom Kit') ?></span>
+                </h1>
+            </div>
+            <div class="customkit-page-section-content">
+                <div id="expert_choose_container"><?php echo $this->getChildHtml('expertkit') ?></div>
+            </div>
+            <div class="customkit-page-section-products">
+                <?php echo $this->getChildHtml('expertkit_kit') ?>
+            </div>
+        </div>
+        <div class="customkit-page-customize-kit">
+            <div class="customkit-page-section-title">
+                <h2>
+                    <span id="expertkit_title"><?php echo __('Customize must have kit') ?></span>
+                </h2>
+            </div>
+            <div class="customkit-page-section-description">
+                <?php echo $_kit->getShortDescription(); ?>
+            </div>
+            <div class="customkit-page-section-items">
+                <?php echo $this->getChildHtml('expertkit_items') ?>
+            </div>
+            <div class="customkit-page-section-item-box" style="display: none;">
+                <div class="customkit-page-section-item-categories">
+                    <?php echo $this->getChildHtml('expertkit_item_categories') ?>
+                </div>
+                <div class="customkit-page-section-item-category-products">
+                    <div id="expert_kit_item_products_container"></div>
+                </div>
+                <div class="expertkit-addtocart-action">
+                    <div class="qty-box clearfix">
+                        <label for="expertkit_qty"
+                               class="expertkit-qty-label"><?php echo __('Quantity selected kit'); ?></label>
+                        <input type="text" id="expertkit_qty" value="1" class="expertkit-qty"/>
+                    </div>
+                    <button id="expertkit_addtocart" class="expertkit-addtocart-button"
+                            onclick="ExpertKit.addToCart(this);"><span><?php echo __('Add to Basket'); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="customkit-page-product-reviews">
+        <div id="yotpo_reviews_widget">
+            <?php //echo $this->helper('yotpo')->showWidget($this, $_kit, false); ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    jQuery(document).ready(function () {
+        ExpertKit.productListUrl = "<?php echo $this->getProductListUrl(); ?>";
+        ExpertKit.addToCartUrl = "<?php echo $this->getAddToCartUrl(); ?>";
+        ExpertKit.collection = <?php echo $this->getJsonExpertKitCollection(); ?>;
+        ExpertKit.setDefaultCurrentKitId();
+    });
+    //]]>
+</script>
+<style>
+    .customkit-page:after,
+    .customkit-page-content:after,
+    .customkit-page-choose-kit:after,
+    .customkit-page-section-content:after,
+    .customkit-page-section-description:after,
+    .customkit-page-section-products:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+</style>

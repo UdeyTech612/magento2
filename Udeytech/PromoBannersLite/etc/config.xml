@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<utbannerslite>
+			<banners>
+				<gift_images/>
+				<gift_image_width/>
+				<gift_image_height/>
+				<attribute_header/>
+				<attribute_description/>
+			</banners>
+		</utbannerslite>
+	</default>
+</config>

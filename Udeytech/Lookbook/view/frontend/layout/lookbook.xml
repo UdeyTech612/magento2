@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Udeytech_Lookbook::css/lookbook.css"/>
+        <css src="Udeytech_Lookbook::css/colorpicker.css"/>
+        <css src="Udeytech_Lookbook::css/layout.css"/>
+        <script src="Udeytech_Lookbook::js/colorpicker.js"/>
+        <script src="Udeytech_Lookbook::js/eye.js"/>
+        <script src="Udeytech_Lookbook::js/layout.js"/>
+        <script src="Udeytech_Lookbook::js/utils.js"/>
+        <script src="Udeytech_Lookbook::js/lookbook.js"/>
+        <script src="Udeytech_Lookbook::js/jquery.canvasAreaDraw.min.js"/>
+        <script src="Udeytech_Lookbook::js/jquery.imagemapster.min.js"/>
+        <script src="Udeytech_Lookbook::js/jquery.nyroModal.custom.min.js"/>
+        <script src="Udeytech_Lookbook::js/jquery-ui.1.10.3.full.min.js"/>
+    </head>
+    <body>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>lookbook_tab</name>
+                <block>lookbook/adminhtml/product</block>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block class="Magento\Framework\View\Element\Template" name="lookbook.admin.config"
+                   template="udeytech/lookbook/config_block.phtml"/>
+        </reference>
+    </body>
+</page>

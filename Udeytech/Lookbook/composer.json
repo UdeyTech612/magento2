@@ -1,0 +1,26 @@
+{
+    "name": "udeytech/module-lookbook",
+    "description": "Developed By : Udey Technology India Pvt. Ltd.",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Udeytech",
+            "email": "info@udeytech.com"
+        },
+        {
+            "name": "satendra tyagi",
+            "email": "satendra.kumar@udeytech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Udeytech\\Lookbook\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

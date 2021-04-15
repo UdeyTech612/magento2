@@ -1,0 +1,21 @@
+<?php /**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @var $block Disconnect */
+
+use Udeytech\Instagram\Block\Adminhtml\System\Config\Frontend\Oauth\Disconnect; ?>
+<?= $block->getButtonHtml(); ?>
+<script type="text/javascript">
+    require(["jquery"], function () {
+        var button = jQuery('#<?= $block->getButton()->getId(); ?>');
+        if (button) {
+            button.click(function (e) {
+                e.stopPropagation();
+                confirmSetLocation('<?= __('Are you sure?') ?>', '<?= $block->getDisconnectUrl(); ?>');
+            });
+        }
+        jQuery('#row_udeytech_instagram_api_oauth .note span').html('<?= $block->getComment() ?>');
+    });
+</script>

@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\ObjectManager;
+
+$items = $this->getFreekitItems();
+$config = $this->helper('Udeytech\Totalcustomization\Helper\Data');
+?>
+<?php $key = 0;
+foreach ($items as $item): ?><?php $key++; ?>
+    <?php if (is_array($item['category_list'])) : ?>
+        <?php foreach ($item['category_list'] as $categoryItem): ?>
+            <?php $products = $categoryItem['products']; ?>
+            <?php if ($products) : ?>
+                <?php $currentCategoryId = $categoryItem['category']->getId(); ?>
+                <ul class="freekit-select-products-box"
+                    id="freekit_select_products_box_id_<?php echo $currentCategoryId; ?>" style="display: none">
+                    <div id="freekit_select_products_box_id_<?php echo $currentCategoryId; ?>"
+                         data-mage-init='{
+                                            "OwlCarousel":{
+                                            "autoPlay": 300000,
+                                            "items" : 3,
+                                            "dots" : false,
+                                            "navigation" : true,
+											"navigationText" :  ["",""],
+                                            "itemsDesktop" : [1199,3],
+                                            "itemsDesktopSmall" : [979,3]
+                                            }
+                                            } 
+                                            '>
+                        <?php foreach ($products as $product): ?>
+                            <li class="item freekit-select-product"
+                                id="freekit_select_product_id_<?php echo $product->getId(); ?>">
+                                <?php $_imgSrc = $config->getProductImageUrl($product->getId()); ?>
+                                <h3 class="product-name"><?php
+                                    $om = ObjectManager::getInstance();
+                                    $pdata = $om->create('Magento\Catalog\Model\Product')->load($product->getId());
+                                    echo $pdata->getName(); ?></h3>
+                                <img width="220" height="220" src="<?php echo $_imgSrc; ?>"/>
+                            </li>
+                        <?php endforeach; ?>
+                    </div>
+                </ul>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <?php $currentCategoryId = $key; ?>
+    <ul class="freekit-select-products-box no-paginator"
+        id="freekit_select_products_box_id_<?php echo $currentCategoryId; ?>" style="display: none;">
+        <?php $products = $item['products']; ?>
+        <div id="freekit_select_products_box_id_<?php echo $currentCategoryId; ?>"
+             data-mage-init='{
+                                "OwlCarousel":{
+                                "autoPlay": 3000,
+                                "items" : 3,
+                                "dots" : false,
+                                "nav" : true,
+                                "navigationText" :  ["",""],
+                                "itemsDesktop" : [1199,3],
+                                "itemsDesktopSmall" : [979,3]
+                                }
+                             }'>
+            <?php foreach ($products as $product): ?>
+                <li class="item freekit-select-product"
+                    id="freekit_select_product_id_<?php echo $product->getId(); ?>">
+                    <?php $_imgSrc = $config->getProductImageUrl($product->getId()); ?>
+                    <h3 class="product-name">
+                        <?php
+                        $om = ObjectManager::getInstance();
+                        $pdata = $om->create('Magento\Catalog\Model\Product')->load($product->getId());
+                        echo $pdata->getName(); ?></h3>
+                    <img width="220" height="220" src="<?php echo $_imgSrc; ?>"/>
+                </li>
+            <?php endforeach; ?> </div>
+        </ul><?php endif; ?>
+<?php endforeach; ?>
+
+

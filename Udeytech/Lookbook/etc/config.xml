@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lookbook>
+            <settings>
+                <enabled>0</enabled>
+                <marker>dynamic</marker>
+                <tooltip>1</tooltip>
+                <mapster>1</mapster>
+                <img_position>top</img_position>
+            </settings>
+            <styles>
+                <marker_image>default/marker.png</marker_image>
+                <marker_image_width>30</marker_image_width>
+                <marker_image_height>30</marker_image_height>
+                <marker_border_width>1</marker_border_width>
+                <marker_border_radius>3</marker_border_radius>
+                <marker_border_color>dbdbdb</marker_border_color>
+                <marker_text_padding>6</marker_text_padding>
+                <marker_text_color>ffffff</marker_text_color>
+                <marker_font>bold 12px Arial,Helvetica,sans-serif</marker_font>
+                <marker_text_shadow>1px 1px 0 #000000</marker_text_shadow>
+                <bg_marker_opacity>0.5</bg_marker_opacity>
+                <bg_marker_color>383838</bg_marker_color>
+                <marker_speed>200</marker_speed>
+                <tooltip_bg_image>default/tooltip_bg.png</tooltip_bg_image>
+                <tooltip_bg_image_width>30</tooltip_bg_image_width>
+                <tooltip_bg_image_height>30</tooltip_bg_image_height>
+                <tooltip_position>top</tooltip_position>
+                <tooltip_hor_offset>0</tooltip_hor_offset>
+                <tooltip_text_color>f2f2f2</tooltip_text_color>
+                <tooltip_font>bold 14px Arial,Helvetica,sans-serif</tooltip_font>
+                <tooltip_text_shadow>1px 1px 0 #000000</tooltip_text_shadow>
+                <tooltip_padding_top>4</tooltip_padding_top>
+                <popup_background_color>ffffff</popup_background_color>
+                <popup_duration>300</popup_duration>
+                <popup_shadow>4px 4px 9px 0px rgba(50, 50, 50, 0.9)</popup_shadow>
+                <popup_overlay_opacity>0.5</popup_overlay_opacity>
+                <popup_overlay_color>ffffff</popup_overlay_color>
+                <popup_border_color>000000</popup_border_color>
+                <popup_border_width>1</popup_border_width>
+                <popup_border_radius>5</popup_border_radius>
+                <popup_padding>5</popup_padding>
+                <popup_close>1</popup_close>
+                <popup_close_image>default/close.png</popup_close_image>
+                <popup_image_width>300</popup_image_width>
+                <popup_image_height>400</popup_image_height>
+                <mapster_fill_opacity>0.5</mapster_fill_opacity>
+                <mapster_fill_color>ffffff</mapster_fill_color>
+                <mapster_stroke_color>c7c7c7</mapster_stroke_color>
+                <mapster_stroke_opacity>0</mapster_stroke_opacity>
+                <mapster_stroke_width>0</mapster_stroke_width>
+                <mapster_fade>0</mapster_fade>
+                <mapster_fade_duration>50</mapster_fade_duration>
+            </styles>
+            <advanced>
+                <customcss><![CDATA[.nyroModalDom .minimal-price .price { color: red; font-size: 24px; }]]></customcss>
+            </advanced>
+        </lookbook>
+    </default>
+</config>

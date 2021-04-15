@@ -1,0 +1,33 @@
+<?php echo "Testmessage";
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$kitCollection = $this->getExpertKitCollection();
+?>
+<?php foreach ($kitCollection as $kit): ?>
+    <?php $items = $kit->getExpertItems(); ?>
+    <?php if (isset($items)) : ?>
+        <?php foreach ($items as $key => $_item): ?>
+            <?php $boxId = $kit->getId() . '-' . $key; ?>
+            <ul class="expertkit-categories-box" id="expertkit_categories_box_id_<?php echo $boxId ?>"
+                style="display: none;">
+                <div class="prev"><span>prev</span></div>
+                <?php $_categoriesCollection = $this->getCollectionByCategories($_item['categories']); ?>
+                <?php foreach ($_categoriesCollection as $_category): ?>
+                    <?php $categoryId = $kit->getId() . '_' . $key . '-' . $_category->getId(); ?>
+                    <li class="expertkit-category" id="expertkit_category_id_<?php echo $categoryId; ?>"
+                        data-kit-id="<?php echo $kit->getId() ?>" data-item="<?php echo $key ?>">
+                        <span><?php echo $_category->getName(); ?></span>
+                    </li>
+                <?php endforeach; ?>
+                <div class="next"><span>next</span></div>
+            </ul>
+            <script>
+                jQuery(function () {
+                    jQuery("#expertkit_categories_box_id_<?php echo $boxId?>").categoriesPaginator();
+                });
+            </script>
+        <?php endforeach; ?>
+    <?php endif; ?>
+<?php endforeach; ?>

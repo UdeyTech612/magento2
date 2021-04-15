@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Udeytech\Lookbook\Api\PositionsRepositoryInterface"
+                type="Udeytech\Lookbook\Model\PositionsRepository"/>
+    <preference for="Udeytech\Lookbook\Api\Data\PositionsInterface" type="Udeytech\Lookbook\Model\Data\Positions"/>
+    <preference for="Udeytech\Lookbook\Api\Data\PositionsSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Udeytech\Lookbook\Model\ResourceModel\Positions\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">udeytech_lookbook_positions</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Udeytech\Lookbook\Model\ResourceModel\Positions\Collection
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="udeytech_lookbook_positions_listing_data_source" xsi:type="string">
+                    Udeytech\Lookbook\Model\ResourceModel\Positions\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

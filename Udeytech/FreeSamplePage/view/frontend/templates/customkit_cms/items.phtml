@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_columnCount = 3;
+$kit = $this->getProduct();
+$items = $this->getBasekitItems();
+?>
+<ul class="expertkit-items-box clearfix cms-bundle-items" id="expertkit_items_box_id">
+    <?php if (isset($items)) : ?>
+        <?php $i = 0;
+        $k = 0;
+    foreach ($items as $key => $_item): ?>
+        <?php $i++;
+        $k++; ?>
+        <li class="expertkit-item cms-bundle-item <?php echo (($i - 1) % $_columnCount == 0) ? 'left' : (($i % $_columnCount == 0) ? 'right' : 'center') ?> <?php echo $_item->getData('required') ? 'required' : 'no-required' ?>"
+            id="expertkit_item_id_<?php echo $key ?>">
+            <div class="empty cms-bundle-item-wrap">
+                    <span class="cms-bundle-item-title">
+                        <div><?php echo $_item->getData('title'); ?></div>
+                        <span class="key cms-bundle-item-number"><?php echo $k; ?></span>
+                    </span>
+            </div>
+            <div class="content" style="display: none">
+                <div class="wrap"></div>
+                <i class="reset-item-button"></i>
+            </div>
+            <div class="validation-notice" style="display: none">
+                    <span>
+                        <?php echo __('Select product') ?>
+                        <span class="key"><?php echo __('to') ?></span>
+                        <?php echo __('complete kit') ?>
+                    </span>
+            </div>
+        </li>
+<?php endforeach; ?>
+<script>
+    if (typeof BaseKit != "undefined") {
+        BaseKit.itemsAmount = <?php echo count($items); ?>;
+    }
+</script>
+<?php endif; ?>
+</ul>
+<div data-mage-init='{"basekit": {
+       "items": "$(\".expertkit-item\")",
+       "addtocartbt": "$(\".expertkit-addtocart-action\")",
+       "mainproduct": "$(\"#mainproduct\")"
+     }
+}'></div>

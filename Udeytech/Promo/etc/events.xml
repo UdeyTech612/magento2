@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+        <event name="salesrule_validator_process">
+        <observer name="place_order_after" instance="Udeytech\Promo\Model\Observer\HandleValidation"/>
+        </event>
+        <event name="sales_quote_collect_totals_after">
+        <observer name="sales_quote_collect_totals_after"
+          instance="Udeytech\Promo\Model\Observer\OnCollectTotalsAfter"/>
+        </event>
+        <event name="sales_quote_collect_totals_before">
+        <observer name="sales_quote_collect_totals_before"
+          instance="Udeytech\Promo\Model\Observer\OnCollectTotalsBefore"/>
+        </event>
+        <event name="sales_quote_address_collect_totals_after">
+        <observer name="sales_quote_address_collect_totals_after"
+          instance="Udeytech\Promo\Model\Observer\OnAddressCollectTotalsAfter"/>
+        </event>
+        <event name="sales_quote_remove_item">
+        <observer name="sales_quote_remove_item" instance="Udeytech\Promo\Model\Observer\OnQuoteRemoveItem"/>
+        </event>
+        <event name="sales_order_place_after">
+        <observer name="sales_order_place_after" instance="Udeytech\Promo\Model\Observer\DecrementUsageAfterPlace"/>
+        </event>
+        <event name="sales_order_place_before">
+        <observer name="sales_order_place_before" instance="Udeytech\Promo\Model\Observer\OnOrderPlaceBefore"/>
+        </event>
+        <event name="sales_quote_product_add_after">
+        <observer name="sales_quote_product_add_after" instance="Udeytech\Promo\Model\Observer\OnProductAddAfter"/>
+        </event>
+        <event name="checkout_submit_all_after">
+        <observer name="checkout_submit_all_after" instance="Udeytech\Promo\Model\Observer\OnCheckoutSubmitAllAfter"/>
+        </event>
+        <event name="adminhtml_sales_order_create_process_data_before">
+        <observer name="adminhtml_sales_order_create_process_data_before"
+          instance="Udeytech\Promo\Model\Observer\OnAdminhtmlSalesOrderCreateProcessDataBefore"/>
+        </event>
+        <event name="adminhtml_block_salesrule_actions_prepareform">
+        <observer name="adminhtml_block_salesrule_actions_prepareform"
+          instance="Udeytech\Promo\Model\Observer\HandleFormCreation"/>
+        </event>
+        <event name="adminhtml_controller_salesrule_prepare_save">
+        <observer name="adminhtml_controller_salesrule_prepare_save"
+          instance="Udeytech\Promo\Model\Observer\SalesRulePrepareSave"/>
+        </event>
+        <event name="salesrule_rule_save_before">
+        <observer name="salesrule_rule_save_before" instance="Udeytech\Promo\Model\Observer\SaveBefore"/>
+        </event>
+        <event name="salesrule_rule_save_after">
+        <observer name="salesrule_rule_save_after" instance="Udeytech\Promo\Model\Observer\SaveAfter"/>
+        </event>
+        <event name="controller_action_predispatch_adminhtml_promo_quote_index">
+        <observer name="controller_action_predispatch_adminhtml_promo_quote_index"
+          instance="Udeytech\Promo\Model\Observer\PrePromoQuoteIndex"/>
+        </event>
+</config>

@@ -1,0 +1,54 @@
+<div id="product_addtocart_form">
+    <div class="freekit-page-content">
+        <div class="freekit-page-customize-kit">
+            <div class="freekit-page-section-items">
+                <?php echo $this->getChildHtml('freekit_items') ?>
+            </div>
+            <div class="freekit-page-section-item-box">
+                <div id="freekit_categories_mobile">
+                    <div id="freekit_item_categories_container"
+                         class="freekit-page-section-item-categories clearfix">
+                        <?php echo $this->getChildHtml('freekit_categories') ?>
+                    </div>
+                </div>
+                <div id="freekit_products_mobile">
+                    <div id="freekit_item_products_container"
+                         class="freekit-page-section-item-category-products clearfix">
+                        <?php echo $this->getChildHtml('freekit_products') ?>
+                    </div>
+                </div>
+            </div>
+            <div class="clr"></div>
+            <div id="freekit_addtocart_action" class="freekit-addtocart-action">
+                <?php echo $this->getChildHtml('freekit_add_to_cart_button') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-mage-init='{"freekit": {
+"itemsBox": "$(\"#freekit_items_box_id\")",
+"items": "$(\".freekit-item\")",
+"itemIdPrefix": "\"freekit_item_id_\"",
+"products": "$(\".freekit-select-product\")",
+"removeBtn": "$(\".freekit-reset-item-button\")",
+"samplesBox": "$(\".freekit-select-products-box\")",
+"sampleBoxIdPrefix": ".freekit_select_products_box_id_",
+"categoryIdPrefix": "\"freekit_category_id_\"",
+"sampleProducts": "$(\".freekit-select-product\")",
+"sampleProductIdPrefix": "\"freekit_select_product_id_\"",
+"categoriesBoxIdPrefix": "\"freekit_categories_box_id_\"",
+"categoriesBox": "$(\".freekit-categories-box\")",
+"categories": "$(\".freekit-category\")",
+"addToCartItem": "$(\"#freekit_addtocart_action\")",
+"productsConteiner": "$(\"#freekit_item_products_container\")",
+"categoriesConteiner": "$(\"#freekit_item_categories_container\")",
+"ITEMS_FOR_DELIMITER": "3"
+}
+}'></div>
+<script>
+    require(['Magento_Customer/js/customer-data'], function (customerData) {
+        var sections = ['cart'];
+        customerData.invalidate(sections);
+    });
+</script>
+

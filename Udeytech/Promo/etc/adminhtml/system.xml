@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ampromo" translate="label" sortOrder="999">
+            <label>Udeytech Extentions</label>
+        </tab>
+        <section id="ampromo" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>Promo Items</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_Promo::config_udeytech_promo</resource>
+            <group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>General</label>
+                <field id="message" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Message For The Promo Item In The Cart</label>
+                    <comment>Can be configured for each rule individually on the `Labels` tab</comment>
+                </field>
+                <field id="prefix" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Prefix For The Promo Item Name In The Order</label>
+                    <comment>Can be configured for each rule individually on the `Labels` tab</comment>
+                </field>
+                <field id="auto_add" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Add Simple Products Automatically, Without Confirmation</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_nonfree" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Add products with any amount of discount</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="auto_add_downloadable" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Add Downloadable Products Automatically, Without Confirmation</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="free_shipping" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Free Shipping For Promo Items</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="calculate_tax" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Calculate Tax For Promo Items</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apply_to_admin_orders" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Apply to Admin orders</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tax_in_subtotal" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Add tax to row subtotal</label>
+                    <comment><b>Please note!</b> This setting will work only for $X value calculation in "Auto add promo items for every $X spent" action.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_currency" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Use default currency for calculate row subtotal</label>
+                    <comment><b>Please note!</b> This setting will work only for $X value calculation in "Auto add promo items for every $X spent" action.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="popup" sortOrder="11" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Promo Items Addition Block</label>
+                <field id="mode" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                       <label>Display Mode</label>
+                       <comment/>
+                       <source_model>\Udeytech\Promo\Model\Source\displayMode</source_model>
+                </field>
+                <field id="add_message" type="textarea" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>"Select Promo" Block</label>
+                    <comment><b>Note:</b> Block should include a link, so customer can click on it and open a pop-up window with available promo items</comment>
+                </field>
+                <field id="auto_open_popup" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Open Popup Automatically</label>
+                    <comment>Always open free gift popup on cart page if any free gift is available</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="popup_on_checkout" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Show Popup on Checkout Page</label>
+                    <comment>Useful for when customers go directly to the checkout process, skipping the cart page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="block_header" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Block's Header Text</label>
+                    <comment/>
+                </field>
+                <field id="messages" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>"Add to Cart" Button Text</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="limitations" sortOrder="13" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Limitations</label>
+                <field id="skip_special_price" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Do not Offer Promos for Products with Special Price</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="skip_special_price_configurable" type="select" sortOrder="10" showInWebsite="1"
+                       showInStore="1" showInDefault="1" translate="label">
+                    <label>Do not Offer Promos for Configurable Products with when Child has Special Price</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="skip_promo_item_add" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Ignore gift products when validating promo rule conditions</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="notifications" sortOrder="12" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Notifications</label>
+                <field id="gift_image_width" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Reminder about Available Promos</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gift_image_height" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Display Success Messages</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="attribute_header" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Display Error Messages</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="attribute_description" type="select" sortOrder="10" showInWebsite="1" showInStore="1"
+                       showInDefault="1" translate="label">
+                    <label>Show Stock Warning In Admin Panel</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

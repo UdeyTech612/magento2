@@ -1,0 +1,22 @@
+{
+    "name": "udeytech/module-promo",
+    "description": "Mageno 2 Promo ",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Udeytech",
+            "email": "info@udeytech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Udeytech\\Promo\\": ""
+        }
+    }
+}

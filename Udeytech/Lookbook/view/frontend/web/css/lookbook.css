@@ -1,0 +1,217 @@
+/*
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+#group-image {
+    position: relative;
+    opacity: 0;
+}
+
+.group-item-plus {
+
+}
+
+.group-plus {
+    border-radius: 30px;
+    display: block;
+}
+
+.group-plus a {
+    display: block;
+    color: transparent;
+    text-decoration: none;
+    z-index: 3;
+}
+
+.group-item-plus {
+    position: absolute;
+}
+
+.group-plus .number {
+    font: 12px/24px Arial, Helvetica, sans-serif;
+    position: absolute;
+    text-indent: 0;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.product-description-wrapper li {
+    display: block;
+    font: 11px/18px helvetica, tahoma, sans-serif;
+    padding: 15px;
+}
+
+.group-item-container {
+    position: absolute;
+    overflow: hidden;
+
+}
+
+.group-item-container-name {
+    border-radius: 30px;
+    border: 1px solid #888;
+    padding: 6px 6px 6px 16px;
+    background: url('../images/bg.png') repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 #000000;
+    text-align: center;
+}
+
+.nyroModalBg {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.7;
+    z-index: 98000;
+}
+
+.nyroModalDom input.qty {
+    text-align: center;
+}
+
+.nmReposition {
+    position: absolute;
+}
+
+.nyroModalCloseButton {
+    top: -13px;
+    right: -13px;
+    /*width: 12px;*/
+    /*height: 12px;*/
+    z-index: 100000;
+}
+
+.nyroModalTitle {
+    top: -26px;
+    left: 0;
+    margin: 0;
+    font-size: 1.1em;
+    color: #ddd;
+}
+
+.nyroModalCont {
+    position: absolute;
+    border: 1px solid #999;
+    border-radius: 5px;
+    margin: 25px;
+    background: #fff;
+    z-index: 99000;
+}
+
+.nyroModalCont img {
+    display: inline;
+}
+
+.nyroModalCont .group-qty-container img {
+    vertical-align: middle;
+}
+
+.nyroModalCont .product-image, .nyroModalCont .no-touch .product-img-box .product-image:hover:not(.zoom-available) {
+    display: inline-block;
+}
+
+.nyroModalCont h1, .nyroModalCont .h1 {
+    margin: 0 auto;
+}
+
+.nyroModalCont iframe {
+    width: 600px;
+    height: 400px;
+}
+
+.nyroModalError {
+    border: 4px solid red;
+    color: red;
+    width: 250px;
+    height: 250px;
+}
+
+.nyroModalError div {
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+}
+
+.nyroModalLink, .nyroModalDom, .nyroModalForm, .nyroModalFormFile {
+    position: relative;
+    padding: 30px;
+    min-height: 60px;
+    min-width: 120px;
+    max-width: 1000px;
+}
+
+.nyroModalImage, .nyroModalSwf, .nyroModalIframe, .nyroModalIframeForm {
+    position: relative;
+    overflow: hidden;
+}
+
+.nyroModalImage img {
+    vertical-align: top;
+}
+
+.nyroModalHidden {
+    left: -9999em;
+    top: -9999em;
+}
+
+.nyroModalLoad {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    padding: 0;
+}
+
+.nyroModalPrev, .nyroModalNext {
+    outline: none;
+    position: absolute;
+    top: 0;
+    height: 60%;
+    width: 150px;
+    min-height: 50px;
+    max-height: 300px;
+    cursor: pointer;
+    text-indent: -9999em;
+    background: transparent url('data:image/gif;base64,AAAA') left 20% no-repeat;
+}
+
+.nyroModalImage .nyroModalPrev, .nyroModalImage .nyroModalNext {
+    height: 100%;
+    width: 40%;
+    max-height: none;
+}
+
+.nyroModalPrev {
+    left: 0;
+}
+
+.nyroModalNext {
+    right: 0;
+    background-position: right 20%;
+}
+
+.nyroModalNext:hover {
+    background-position: right 20%;
+}
+
+.nyroModalDom .item {
+    text-align: center;
+}
+
+.group-item-wrap .group-item-container {
+    z-index: -1;
+}
+
+.group-item-wrap.active .group-item-container {
+    z-index: 0;
+}
+
+.grouped-items-table tr.selected {
+    background: none repeat scroll 0 0 #DDFFDD;
+}

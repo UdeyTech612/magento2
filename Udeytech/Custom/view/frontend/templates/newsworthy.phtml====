@@ -1,0 +1,74 @@
+<?php if ($currentCategory = $block->getCurrentCategory())
+{
+$categoryId = $currentCategory->getId();
+$category = $block->getCategory($categoryId);
+$parentCategories = $category->getParentCategories();
+$childrenCategories = $category->getChildrenCategories();
+?>
+<div class="category-head-container">
+    <div class="category-head-content">
+        <?php if ($_description=$block->getCurrentCategory()->getDescription()) : ?>
+            <div class="category-head-description">
+                <p><?php echo $_description; ?></p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="category-content">
+	<div class="category-products">
+		<ul class="products-grid">
+			<?php
+			foreach ($childrenCategories as $subcat) {
+			?>
+			<li>
+				<?php
+				$categoryImage = $block->getCategoryImage($subcat['entity_id']);
+				$_imgHtml = '';
+				if ($img = $categoryImage->getImageUrl())
+				{
+				$_imgHtml = '<img src="' . $img . '" alt="' . $subcat->getName(). '" />';
+				}
+				?>
+				<div class="product-image">
+					<a href="<?php echo $subcat->getUrl(); ?>" alt="<?php echo $subcat->getName(); ?>">
+						<?php echo $_imgHtml ?>
+					</a>
+				</div>
+				<div class="product-info">
+					<h2>
+					<a href="<?php echo $subcat->getUrl(); ?>">
+						<?php echo $subcat->getName(); ?>
+					</a>
+					</h2>
+				</div>
+				<?php 
+$categoryId = $subcat->getId(); // fetching products in category id 6
+$categoryProducts = $block->getCategoryProducts($categoryId);
+foreach ($categoryProducts as $product) {
+    
+		?>
+
+ <?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+$addToCartUrl =  $listBlock->getAddToCartUrl($product);
+?>
+<?php if ($product->isSaleable()) :?>
+<form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+    <?php echo $block->getBlockHtml('formkey')?>
+    <div class="btn">
+        <button type="submit" title="Add to Cart" class="action tocart primary">
+            <span>Add to Cart</span>
+        </button>
+    </div>   
+ </form>
+ <?php endif; ?>
+
+                <?php } ?>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>
+<?php } ?>

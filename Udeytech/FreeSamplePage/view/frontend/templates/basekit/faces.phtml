@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_columnCount = 3;
+$facesByGroup = $block->getFacesByGroup();
+?>
+<div id="basekit-items-box">
+    <?php $i = 0;
+    foreach ($facesByGroup as $key => $group) : ?>
+        <div class="basekit-face-group-box">
+            <?php $i++; ?>
+            <span
+                class="basekit-face-group-name <?php echo (($i - 1) % $_columnCount == 0) ? 'col-1' : (($i % $_columnCount == 0) ? 'col-3' : 'col-2') ?>"><?php echo $group['group_name'] ?></span>
+            <ul class="basekit-face-group" id="basekit_face_group_<?php echo $key; ?>">
+                <?php foreach ($group['images'] as $face) : ?><?php $src = $face->getUrl(); ?>
+                    <li class="basekit-face-item">
+                        <div class="basekit-face-img" style="background-image: url('<?php echo $src; ?>');">
+                            <img src="<?php echo $src; ?>"/>
+                            <div class="basekit-face-label"><span><?php echo $face->getLabel(); ?></span></div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endforeach; ?>
+</div>

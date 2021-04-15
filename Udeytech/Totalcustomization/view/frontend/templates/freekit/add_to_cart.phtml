@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$helperData = $this->helper('Udeytech\Totalcustomization\Helper\Data');
+$config = $this->helper('Udeytech\Totalcustomization\Helper\Config');
+$hasFreeKitInCart = $helperData->hasFreeKitInCart();
+?>
+<?php if ($hasFreeKitInCart) : ?>
+    <span><?php echo $config->getAlreadyInCartMessage() ?></span>
+<?php endif; ?>
+<button id="freekit_add_to_cart" class="freekit-addtocart-button" <?php echo($hasFreeKitInCart ? 'disabled' : ''); ?> >
+    <span><?php echo __('Add to basket'); ?></span>
+</button>
+<script>
+    var hasFreeKitInCart = <?php echo (int)$hasFreeKitInCart; ?>;
+</script>

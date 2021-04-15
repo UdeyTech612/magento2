@@ -1,0 +1,25 @@
+<?php $items = $this->getFreekitItems();
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+if (isset($items)) : ?>
+    <?php $key = 0;
+    foreach ($items as $_item): ?>
+        <?php $key++; ?>
+        <?php if (is_array($_item['category_list'])) : ?>
+            <ul class="freekit-categories-box" id="freekit_categories_box_id_<?php echo $key ?>" style="display: none">
+                <div class="prev"><span>prev</span></div>
+                <?php $_categories = $_item['category_list']; ?>
+                <?php foreach ($_categories as $categoryItem) : ?>
+                    <?php $categoryId = $categoryItem['category']->getId(); ?>
+                    <li class="freekit-category" id="freekit_category_id_<?php echo $categoryId; ?>">
+                        <span><?php echo $categoryItem['category']->getName(); ?></span>
+                    </li>
+                <?php endforeach; ?>
+                <div class="next"><span>next</span></div>
+            </ul>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>

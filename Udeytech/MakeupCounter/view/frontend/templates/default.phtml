@@ -1,0 +1,141 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_tipBlockContent = $this->getTipBlockContent();
+$_currentLookProduct = $this->getProduct();
+$_currentLookProductName = $_currentLookProduct->getName();
+$_currentLookProductUrl = $_currentLookProduct->getProductUrl();
+?>
+<div class="makeupcounter-page">
+    <div class="makeupcounter-header-section">
+        <div class="makeupcounter-header-title">
+            <h1><?php echo __('Makeup counter') ?></h1>
+        </div>
+        <div class="makeupcounter-page-desc">
+            <?php echo $this->getChildHtml('makeup_counter_desc_text') ?>
+        </div>
+    </div>
+    <div class="choose-your-look-section">
+        <div class="choose-your-look-title">
+            <h2><?php echo __('Choose your perfect look today:') ?></h2>
+        </div>
+        <?php echo $this->getChildHtml('lookbook'); ?>
+    </div>
+    <?php if ($_tipBlockContent != ''): ?>
+        <div class="makeupcounter-tips-section">
+            <div class="makeupcounter-section-title">
+                <h2><span><?php echo __('Makeup tips') ?></span></h2>
+            </div>
+            <?php echo $_tipBlockContent; ?>
+        </div>
+    <?php endif; ?>
+    <div class="makeupcounter-shareit-section">
+        <h2><?php echo __('Share it') ?></h2>
+        <?php $_currentLookProductImage = $this->helper('Magento\Catalog\Helper\Image')->init($_currentLookProduct, 'image'); ?>
+        <div class="shareit-icon-wrap">
+            <a class="fa fa-twitter" target="_blank"
+               href="http://twitter.com/home?status=<?php echo urlencode($_currentLookProductName) ?>+<?php echo urlencode($_currentLookProductUrl) ?>"></a>
+            <a class="fa fa-facebook" target="_blank"
+               href="http://www.facebook.com/share.php?u=<?php echo urlencode($_currentLookProductUrl) ?>&title=<?php echo urlencode($_currentLookProductName) ?>"></a>
+            <a class="fa fa-gplus" target="_blank"
+               href="https://plus.google.com/share?url=<?php echo urlencode($_currentLookProductUrl) ?>"></a>
+            <a class="fa fa-pinterest" target="_blank"
+               href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($_currentLookProductUrl) ?>"></a>
+        </div>
+    </div>
+    <div class="makeupcounter-all-looks-section">
+        <div class="makeupcounter-section-title">
+            <h2><span><?php echo __('All looks') ?></span></h2>
+        </div>
+        <ul class="makeupcounter-month-looks">
+            <div id="owl-demo9990" data-mage-init='{
+  "OwlCarousel":{
+        "autoPlay": 3000,
+        "items" : 4,
+        "itemsDesktop" : [1199,3],
+        "itemsDesktopSmall" : [979,3],
+        "dots" : false,
+        "navigation" : true,
+	"navigationText" :  ["",""]
+     }
+}
+'>
+                <?php $allLooks = $this->getAllLooks();
+                foreach ($allLooks as $look) : ?>
+                    <li>
+                        <?php $_url = $look->getUrlModel()->getUrl($look); ?>
+                        <?php $_imgSrc = $this->helper('Magento\Catalog\Helper\Image')->init($look, 'product_base_image'); ?>
+                        <div class="look-month-date"><?php echo __($look->getMonthName()) ?></div>
+                        <div class="look-month-image-container">
+                            <a href="<?php echo $_url; ?>" target="_self">
+					<span class="look-month-image"
+                          style="background-image: url('<?php echo $_imgSrc->getUrl(); ?>');"></span>
+                            </a>
+                        </div>
+                        <div class="look-month-name">
+                            <a href="<?php echo $_url; ?>" target="_self"><?php echo $look->getName(); ?></a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </div>
+        </ul>
+    </div>
+    <?php $_previousLooks = $this->getPreviousMonthLooks(); ?>
+    <?php if (count($_previousLooks) > 0) : ?>
+        <div class="makeupcounter-previous-month-looks-section">
+            <div class="makeupcounter-section-title">
+                <h2><span><?php echo __('Previous month looks') ?></span></h2>
+            </div>
+            <ul class="makeupcounter-month-looks">
+                <?php $j = 1;
+                foreach ($_previousLooks as $look) : ?>
+                <div id="owl-demo<?php echo $j; ?>" data-mage-init='{
+    "OwlCarousel":{
+    "autoPlay": 3000,
+    "items" : 4,
+    "itemsDesktop" : [1199,3],
+    "itemsDesktopSmall" : [979,3]
+    }
+    }
+    '>
+                    <li>
+                        <?php $_url = $look->getUrlModel()->getUrl($look); ?>
+                        <?php $_imgSrc = $this->helper('Magento\Catalog\Helper\Image')->init($look, 'product_base_image')->getUrl(); ?>
+                        <div class="look-month-date"><?php echo $look->getMonthName(); ?></div>
+                        <div class="look-month-image-container">
+                            <a href="<?php echo $_url; ?>" target="_self">
+                                <span class="look-month-image"
+                                      style="background-image: url('<?php echo $_imgSrc; ?>');"></span>
+                            </a>
+                        </div>
+                        <div class="look-month-name">
+                            <a href="<?php echo $_url; ?>"
+                               target="_self"><?php echo $look->getName(); ?></a>
+                        </div>
+                    </li>
+                    </div><?php $j++; endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+    <div class="makeupcounter-deal-of-the-week-section">
+        <div class="deal-of-the-week-banner">
+            <div class="banner-content">
+                <div class="block-left"><span><?php echo __('Deal') ?></span></div>
+                <?php echo $this->getChildHtml('deal_of_the_week_prod_img') ?>
+                <div class="block-right">
+                    <span class="of"><?php echo __('of') ?></span>
+                    <span class="the"><?php echo __('the ') ?></span>
+                    <span class="week"><?php echo __('week') ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .product-detail-statick-block, .lip-blam {
+        display: none;
+    }
+</style>

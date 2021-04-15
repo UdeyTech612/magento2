@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="udeytech_instagram" translate="label" type="text" sortOrder="200" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Instagram Widget</label>
+            <tab>udeytech</tab>
+            <resource>Udeytech_Instagram::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Settings</label>
+                <field id="cache_lifetime" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Cache Lifetime</label>
+                </field>
+            </group>
+            <group id="api" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>API Settings</label>
+                <field id="status" translate="label" type="label" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Status</label>
+                    <frontend_model>Udeytech\Instagram\Block\Adminhtml\System\Config\Frontend\Status</frontend_model>
+                    <backend_model>Udeytech\Instagram\Model\System\Config\Backend\EmptyValue</backend_model>
+                </field>
+                <field id="client_id" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <depends>
+                        <field id="status">0</field>
+                    </depends>
+                </field>
+                <field id="client_secret" translate="label comment" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <depends>
+                        <field id="status">0</field>
+                    </depends>
+                </field>
+                <field id="oauth" translate="label comment" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <frontend_model>Udeytech\Instagram\Block\Adminhtml\System\Config\Frontend\Oauth</frontend_model>
+                    <comment>{{connect_hint}}</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,18 @@
+<?php echo $this->getButtonHtml() ?>
+<script type="text/javascript">
+    function settingsReset() {
+        if (confirm("<?php echo __('Do you really want to reset settings?') ?>")) {
+            new Ajax.Request('<?php echo $this->getAjaxUrl() ?>', {
+                method: 'get',
+                onSuccess: function (transport) {
+                    if (transport.responseText) {
+                        //alert("Module's Settings Restored To Default");
+                        location.reload();
+                    }
+                }
+            });
+        } else {
+            return false;
+        }
+    }
+</script>

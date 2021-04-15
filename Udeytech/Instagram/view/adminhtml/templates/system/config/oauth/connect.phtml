@@ -1,0 +1,52 @@
+<?php /**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @var $block Connect */
+
+use Udeytech\Instagram\Block\Adminhtml\System\Config\Frontend\Oauth\Connect; ?>
+<?= $block->getButtonHtml(); ?>
+<script type="text/javascript">
+    require(["jquery", 'jquery/ui'],
+        function (jQuery) {
+            var button = jQuery('#<?= $this->getButton()->getId(); ?>');
+            if (button) {
+
+                button.click(function (e) {
+                    e.stopPropagation();
+
+                    jQuery.ajax(
+                        '<?= $this->getSaveConfigUrl() ?>',
+                        {
+                            data: {
+                                'client_id': jQuery('#udeytech_instagram_api_client_id').val(),
+                                'client_secret': jQuery('#udeytech_instagram_api_client_secret').val(),
+                                'form_key': window.FORM_KEY
+                            },
+                            method: 'POST',
+                            success: function (response) {
+
+                                if (!response.error || !response.login_url) {
+                                    location.reload();
+                                } else {
+                                    var popupLeftOffset = screen.width / 2 - 640 / 2;
+                                    var popupTopOffset = screen.height / 2 - 560 / 2;
+                                    popWin(
+                                        response.login_url,
+                                        'instagram_oauth',
+                                        'width=' + 640 + ',height=' + 560 + ',left=' + popupLeftOffset + ',top=' + popupTopOffset + ',location=no,status=no,menubar=no,toolbar=no,resizable=no,scrollbars=no'
+                                    );
+                                }
+                            },
+                            failure: function () {
+                                location.reload();
+                            }
+                        }
+                    );
+                });
+            }
+            jQuery('#row_udeytech_instagram_api_oauth .note span').html('<?= $block->getComment() ?>');
+
+        });
+</script>

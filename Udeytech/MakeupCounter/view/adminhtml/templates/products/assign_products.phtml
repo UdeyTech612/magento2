@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$blockGrid = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<?= $block->getGridHtml() ?>
+<input type="hidden" name="rh_products" data-form-part="custom_form" id="rh_products" value=""/>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Udeytech_MakeupCounter/js/assign-products": {
+                "selectedProducts":  <?= /* @escapeNotVerified */
+    $block->getProductsJson() ?>,
+                "gridJsObjectName": <?= /* @escapeNotVerified */
+    '"' . $gridJsObjectName . '"' ?: '{}' ?>
+            }
+        }
+    }
+
+</script>
+<script>
+    require('mage/apply/main').apply();
+</script>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="udeytech_instagram_widget" class="Udeytech\Instagram\Block\Widget\Feed">
+        <label translate="true">[UDEYTECH] Instagram Widget</label>
+        <description translate="true">Widget adds Instagram to your online store</description>
+        <parameters>
+            <parameter name="is_enabled" xsi:type="select" source_model="\Magento\Config\Model\Config\Source\Yesno"
+                       visible="true" required="true" sort_order="10">
+                <label translate="true">Is Enabled</label>
+            </parameter>
+            <parameter name="mode" xsi:type="select" source_model="\Udeytech\Instagram\Model\Source\Mode" visible="true"
+                       required="true" sort_order="20">
+                <label translate="true">Mode</label>
+            </parameter>
+            <parameter name="user_id" xsi:type="text" visible="true" required="true" sort_order="30">
+                <label translate="true">User ID</label>
+                <description translate="true">{how-to-get-user-id}</description>
+                <depends>
+                    <parameter name="mode" value="1"/>
+                </depends>
+            </parameter>
+            <parameter name="hashtag" xsi:type="text" visible="true" required="true" sort_order="40">
+                <label translate="true">Hashtag</label>
+                <depends>
+                    <parameter name="mode" value="2"/>
+                </depends>
+            </parameter>
+            <parameter name="user_name" xsi:type="text" visible="true" required="true" sort_order="50">
+                <label translate="true">User Name</label>
+                <description translate="true">
+                    <![CDATA[Example: http://instagram.com/<b>udeytech_llc</b>]]></description>
+                <depends>
+                    <parameter name="mode" value="4"/>
+                </depends>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true" required="false" sort_order="60">
+                <label translate="true">Title</label>
+                <description translate="true">
+                    <![CDATA[Example: Instagram Feed #%s<br/><b>%s</b> - replaces by hashtag]]></description>
+            </parameter>
+            <parameter name="description" xsi:type="text" visible="true" required="false" sort_order="70">
+                <label translate="true">Description</label>
+                <description translate="true">
+                    <![CDATA[Example: Description Feed #%s<br/><b>%s</b> - replaces by hashtag]]></description>
+            </parameter>
+            <parameter name="limit_items" xsi:type="text" visible="true" required="true" sort_order="80">
+                <label translate="true">Limit</label>
+                <value>5</value>
+            </parameter>
+            <parameter name="image_width" xsi:type="text" visible="true" required="true" sort_order="90">
+                <label translate="true">Thumbnail Width</label>
+                <value>200</value>
+            </parameter>
+            <parameter name="image_height" xsi:type="text" visible="true" required="true" sort_order="100">
+                <label translate="true">Thumbnail Height</label>
+                <value>200</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="110">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="featured" value="widget/feed.phtml" selected="true">
+                        <label translate="true">Instagram Widget Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

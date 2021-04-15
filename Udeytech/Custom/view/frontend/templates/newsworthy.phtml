@@ -1,0 +1,87 @@
+<?php if ($currentCategory = $block->getCurrentCategory())
+{
+$categoryId = $currentCategory->getId();
+$category = $block->getCategory($categoryId);
+$parentCategories = $category->getParentCategories();
+$childrenCategories = $category->getChildrenCategories();
+?>
+<div class="category-head-container">
+    <div class="category-head-content">
+        <?php if ($_description=$block->getCurrentCategory()->getDescription()) : ?>
+            <div class="category-head-description">
+                <p><?php echo $_description; ?></p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="category-content">
+	<div class="category-products">
+		<ul class="products-grid">
+			<?php
+			foreach ($childrenCategories as $subcat) {
+			?>
+			<li>
+				<?php
+				$categoryImage = $block->getCategoryImage($subcat['entity_id']);
+				$_imgHtml = '';
+				if ($img = $categoryImage->getImageUrl())
+				{
+				$_imgHtml = '<img src="' . $img . '" alt="' . $subcat->getName(). '" />';
+				}
+				?>
+				<div class="product-image">
+						<?php echo $_imgHtml;?>
+				</div>
+				<div class="product-info">
+					<h2>
+					<a href="<?php echo $subcat->getUrl(); ?>">
+						<?php echo $subcat->getName(); ?>
+					</a>
+					</h2>
+				</div>
+			<?php 
+					$categoryId = $subcat->getId(); // fetching products in category id 6
+					$categoryProducts = $block->getCategoryProducts($categoryId);
+
+			foreach ($categoryProducts as $product) {
+	 			 /* echo "<pre>";
+    			print_r($product->getData());
+   			 echo "</pre>";*/
+  					$priceFormatted = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($product->getPrice(), 2), true, false);
+					$productId=$product->getId();
+
+					?>
+					 <a href="<?php echo $product->getProductUrl();?>" class="product-base-image">
+		             <img src="<?php echo $block->getItemImage($productId);?>">
+		             </a>
+		             <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php echo $product->getProductUrl();?>">
+                                <?php echo $product->getName();?>
+                            </a>
+                      </strong>
+                      <div class="product-item-inner">
+                            <?php if ($product->isSaleable()) {?>
+                            <span><?php echo $priceFormatted; ?></span>
+                            <div class="product actions product-item-actions">
+                                <div class="actions-primary">
+                                        <form data-role="tocart-form" action="<?php echo $block->getAddtoCartUrl($product); ?>" method="post">
+                                           <?php echo $block->getBlockHtml('formkey')?>
+                                            <button type="submit"
+                                                    title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                    class="action tocart primary">
+                                                <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                            </button>
+                                        </form>
+                                </div>
+                            </div>
+                            <?php }?>
+                        </div>
+					<?php } ?>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+</div>
+<?php } ?>

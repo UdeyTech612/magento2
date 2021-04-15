@@ -1,0 +1,16 @@
+{
+    "name": "udeytech/module-totalcustomization",
+    "description": "this extension  is developed by  udeytech for total customization",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Udeytech\\Totalcustomization\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

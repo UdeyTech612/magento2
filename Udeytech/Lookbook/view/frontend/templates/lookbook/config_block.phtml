@@ -1,0 +1,98 @@
+<?php $section = $this->getRequest()->getParam('section') ?>
+<?php if ($section == 'lookbook'): ?>
+    <script language="JavaScript" type="text/javascript">
+        Validation.addAllThese([
+            ['validate-digits', 'Please use numbers only in this field. Please avoid spaces or other characters such as dots or commas.', function (v) {
+                return Validation.get('IsEmpty').test(v) || !/[^\d]/.test(v);
+            }],
+            ['validate-digits-range', 'The value is not within the specified range.', function (v, elm) {
+                if (Validation.get('IsEmpty').test(v)) {
+                    return true;
+                }
+                var numValue = parseNumber(v);
+                if (isNaN(numValue)) {
+                    return false;
+                }
+                var reRange = /^digits-range-(-?\d+)?-(-?\d+)?$/,
+                    result = true;
+                $w(elm.className).each(function (name) {
+                    var m = reRange.exec(name);
+                    if (m) {
+                        result = result
+                            && (m[1] == null || m[1] == '' || numValue >= parseNumber(m[1]))
+                            && (m[2] == null || m[2] == '' || numValue <= parseNumber(m[2]));
+                    }
+                });
+                return result;
+            }],
+        ]);
+        jUdey('.delete-image').remove();
+        jUdey(document).ready(function () {
+            var el_colors = [
+                jUdey('#lookbook_styles_mapster_fill_color'),
+                jUdey('#lookbook_styles_mapster_stroke_color'),
+                jUdey('#lookbook_styles_popup_overlay_color'),
+                jUdey('#lookbook_styles_popup_background_color'),
+                jUdey('#lookbook_styles_popup_border_color'),
+                jUdey('#lookbook_styles_marker_border_color'),
+                jUdey('#lookbook_styles_marker_text_color'),
+                jUdey('#lookbook_styles_bg_marker_color'),
+                jQuery('#lookbook_styles_tooltip_text_color')
+            ];
+            /*var el_arr = {
+                cloudzoom: {
+                    tr: jUdey('#productviewgallery_cloudzoomsettings tr td'),
+                    selrow: jUdey('#row_productviewgallery_cloudzoomsettings_zoom_type td')
+                },
+                fancybox: {
+                    tr: jUdey('#productviewgallery_fancyboxsettings tr td'),
+                    selrow: jUdey('#row_productviewgallery_fancyboxsettings_fancybox_type td')
+                }
+            };
+            function initSelect(elmnts) {
+                if (elmnts['selrow'].show().find('select').val() != 0) {
+                    elmnts['tr'].hide();
+                    elmnts['selrow'].show();
+                }
+
+                elmnts['selrow'].find('select').change( function(){
+                    if (jUdey(this).val() == 0) {
+                        elmnts['tr'].show();
+                        elmnts['tr'].parent().each( function(){
+                            if (jUdey(this).css('display') != 'none') {
+                                elmnts['tr'].find('input').removeAttr('disabled');
+                            }
+                        });
+                    } else {
+                        elmnts['tr'].hide();
+                        elmnts['tr'].find('input').attr('disabled','disabled');
+                        elmnts['selrow'].show();
+                    }
+                });
+            };*/
+
+            el_colors.each(function (el_color) {
+                el_color.attr('readonly', 'readonly');
+                if (el_color && el_color.val() != '') {
+                    el_color.css('background', '#' + el_color.val());
+                }
+                el_color.ColorPicker({
+                    onSubmit: function (hsb, hex, rgb, el) {
+                        jUdey(el).val(hex);
+                        jUdey(el).ColorPickerHide();
+                    },
+                    onBeforeShow: function () {
+                        jUdey(this).ColorPickerSetColor(this.value);
+                    },
+                    onChange: function (hsb, hex, rgb) {
+                        el_color.val(hex);
+                        el_color.css('background', '#' + hex);
+                    }
+                }).bind('keyup', function () {
+                    jUdey(this).ColorPickerSetColor(this.value);
+                });
+            });
+
+        });
+    </script>
+<?php endif ?>

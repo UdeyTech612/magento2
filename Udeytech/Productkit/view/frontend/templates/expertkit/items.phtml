@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$kitCollection = $this->getExpertKitCollection();
+$_columnCount = $this->getColumnCount();
+$_helper = $this->helper('catalog/output');
+?>
+<?php
+foreach ($kitCollection as $kit): ?>
+    <ul class="expertkit-items-box" id="expertkit_items_box_id_<?php echo $kit->getId(); ?>" style="display: none">
+        <?php $items = $kit->getExpertItems(); ?>
+        <?php if (isset($items)) : ?>
+            <?php $i = 0;
+            foreach ($items as $key => $_item): ?>
+                <?php $i++; ?>
+                <?php $id = $kit->getId() . '-' . $key; ?>
+                <li class="expertkit-item <?php echo (($i - 1) % $_columnCount == 0) ? 'left' : (($i % $_columnCount == 0) ? 'right' : 'center') ?>"
+                    data-item="<?php echo $key ?>" data-kit-id="<?php echo $kit->getId() ?>"
+                    id="expertkit_item_id_<?php echo $id ?>">
+                    <div class="empty"><span><?php echo $_helper->__('Select') ?><span
+                                class="key"><?php echo $i; ?></span><?php echo $_helper->__('color') ?></span></div>
+                    <div class="content" style="display: none">
+                        <div class="wrap"></div>
+                        <i class="reset-item-button"></i>
+                    </div>
+                    <div class="validation-notice" style="display: none">
+                        <span><?php echo $_helper->__('Select product') ?><span
+                                class="key"><?php echo $_helper->__('to') ?></span><?php echo $_helper->__('complete kit') ?></span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+    <script>
+        if (typeof owl == 'undefined') var owl = [];
+        owl[<?php echo $kit->getId(); ?>] = jQuery("#expertkit_items_box_id_<?php echo $kit->getId(); ?>");
+    </script>
+<?php endforeach; ?>

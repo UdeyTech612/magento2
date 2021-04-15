@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_product = $this->getProduct();
+?>
+<div class="customkit-page free-sample-page">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $this->getBlockHtml('formkey') ?>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>"/>
+            <input type="hidden" name="related_product" id="related-products-field" value=""/>
+        </div>
+        <div class="customkit-page-content">
+            <div class="customkit-page-customize-kit">
+                <div class="customkit-page-section-title">
+                    <h2>
+                        <span id="expertkit_title"><?php echo __('Customized kit') ?></span>
+                    </h2>
+                </div>
+                <div class="customkit-page-section-description">
+                    <?php echo $this->getChildHtml('freesample_basekit_desc_text') ?>
+                </div>
+                <div class="customkit-page-section-items">
+                    <!-- Block insert by default -->
+                    <?php echo $this->getChildHtml('basekit_items') ?>
+                </div>
+                <div class="customkit-page-section-item-box">
+                    <div class="customkit-page-section-item-categories">
+                        <!--  Block insert by default and hide -->
+                        <?php echo $this->getChildHtml('basekit_categories') ?>
+                    </div>
+                    <div class="customkit-page-section-item-category-products">
+                        <!--  Block insert by default and hide -->
+                        <div id="expert_kit_item_products_container">
+                            <?php echo $this->getChildHtml('basekit_products') ?>
+                        </div>
+                    </div>
+                    <div class="expertkit-addtocart-action" id="basekit_addtocart_action" style="display: none">
+                        <div class="qty-box clearfix">
+                            <label for="expertkit_qty"
+                                   class="expertkit-qty-label"><?php echo $this->__('Quantity selected kit'); ?></label>
+                            <input type="text" id="expertkit_qty" name="qty" value="1" class="expertkit-qty"/>
+                        </div>
+                        <button id="expertkit_addtocart"
+                                onclick="return BaseKit.addToCart(this);"
+                                class="expertkit-addtocart-button">
+                            <span><?php echo $this->__('Add to basket'); ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+{
+    "name": "udeytech/module-productkit",
+    "description": "udeytech product kit ",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Udeytech",
+            "email": "info@udeytech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Udeytech\\Productkit\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

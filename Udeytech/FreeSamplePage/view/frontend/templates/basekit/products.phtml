@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\UrlInterface;
+
+$kit = $this->getProduct();
+$items = $this->getBasekitItems();
+?>
+<?php foreach ($items as $key => $item): ?>
+    <?php $categories = $item->getCategoryList(); ?>
+    <?php foreach ($categories as $category): ?>
+        <?php $currentCategoryId = $key . '-' . $category['category_id']; ?>
+        <ul class="expertkit-select-products-box"
+            id="expertkit_select_products_box_id_<?php echo $currentCategoryId; ?>" style="display: none;">
+            <?php $products = $category['product_ids']; ?>
+            <div id="owl-demo<?php echo $currentCategoryId; ?>" data-mage-init='{
+            "OwlCarousel":{
+            "autoPlay": 300000,
+            "items" : 3,
+            "dots" : false,
+			"navigation" : true,
+			"navigationText" :  ["",""],
+            "itemsDesktop" : [1199,3],
+            "itemsDesktopSmall" : [979,3]
+  }
+}
+'><?php foreach ($products as $_productId): ?>
+            <li class="expertkit-select-product item"
+                id="expertkit_select_product_id_<?php echo $_productId; ?>">
+                <?php
+                $product = $this->getProductByIdFromOptionByKey($key, $_productId);
+                $objectManager = ObjectManager::getInstance();
+                $prdoduct = $objectManager->get('Magento\Catalog\Api\ProductRepositoryInterface')->getById($product->getId());
+                $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+                $productImageUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $prdoduct->getImage();
+                ?>
+                <div class="item">
+                    <input type="hidden" name="bundle_option[<?php echo $key; ?>]"
+                           value="<?php echo $product->getSelectionId(); ?>" disabled/>
+                    <h3 class="product-name"><?php echo $prdoduct->getName(); ?></h3>
+                    <img src="<?php echo $productImageUrl; ?>" width="220" height="220"/>
+                    <h4 class="product-price">
+                        $0.00<?php //echo $this->getLayout()->getBlock('product.price.render.default')->render('base_price', $prdoduct); ?></h4>
+                </div>
+            </li>
+                <?php endforeach; ?></div>
+        </ul>
+    <?php endforeach; ?>
+<?php endforeach; ?>
+
+
+
+
+

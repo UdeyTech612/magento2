@@ -1,0 +1,529 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="productkit" sortOrder="90" translate="label">
+            <label>productkit</label>
+        </tab>
+        <section id="lookbook" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>LookBook</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_Lookbook::config_udeytech_lookbook</resource>
+            <group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Info</label>
+                <comment/>
+                <field id="info" showInDefault="1" sortOrder="10" translate="label" type="hidden">
+                    <label>Info</label>
+                    <comment>This module was developed by www.udeytech.com.
+                        For docs and examples refer to the udeytech web site.
+                        We have the largest selections of extensions and themes on Magento.
+                    </comment>
+                </field>
+            </group>
+            <group id="settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Enable Module For Frontend</label>
+                    <comment/>
+                    <tooltip>
+                        <![CDATA[<strong>enable/disable</strong><br>Select 'enable' to switch on the module.]]></tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="marker" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Marker</label>
+                    <tooltip>
+                        <![CDATA[<strong>dynamic / static</strong><br>Choose if the marker should be static or dynamic. In case you select 'static', the marker will always show a description.]]></tooltip>
+                    <comment/>
+                    <source_model>Udeytech\Lookbook\Model\Source\Makertype</source_model>
+                </field>
+                <field id="tooltip" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Tooltip</label>
+                    <tooltip><![CDATA[<strong>enable / disable</strong><br>Switch tooltips on/off.]]></tooltip>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="mapster" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Mapster</label>
+                    <tooltip>
+                        <![CDATA[<strong>enable / disable</strong><br>This option lets you enable the product highlighting feature.]]></tooltip>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="img_position" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="select">
+                    <label>Default Image Position</label>
+                    <tooltip>
+                        <![CDATA[<strong>top / left</strong><br>Specify the position of the main product image which will be applied by default.]]></tooltip>
+                    <comment/>
+                    <source_model>Udeytech\Lookbook\Model\Source\Imageposition</source_model>
+                </field>
+            </group>
+            <group id="styles" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Styles</label>
+                <field id="divider_settings_1" showInDefault="1" sortOrder="101" translate="label" type="hidden">
+                    <label>Marker</label>
+                    <comment/>
+                </field>
+                <field id="marker_image" translate="label comment" type="image" sortOrder="101" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Select Image</label>
+                    <tooltip>
+                        <![CDATA[<strong>max size-1024kb</strong><br><strong>'jpg', 'jpeg', 'gif' and 'png' are allowed</strong><br>Upload image file which will be used as the marker on the main photo.]]></tooltip>
+                    <backend_model>Udeytech\Lookbook\Model\Config\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+                </field>
+                <field id="marker_image_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="102"
+                       translate="label" type="text">
+                    <label>Image Width</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify marker image width.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="marker_image_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="103"
+                       translate="label" type="text">
+                    <label>Image Height</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify marker image height.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="title_marker_desc" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="104"
+                       translate="label" type="hidden">
+                    <label>Marker Description</label>
+                    <comment/>
+                </field>
+                <field id="marker_border_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="105"
+                       translate="label" type="text">
+                    <label>Marker Border Width</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Set up description border width.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="marker_border_radius" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="106"
+                       translate="label" type="text">
+                    <label>Marker Border Radius</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Set up description border radius.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="marker_border_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="107"
+                       translate="label" type="text">
+                    <label>Marker Border Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Indicate the color of the description border.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_divider_10" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="108"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="marker_text_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="109"
+                       translate="label" type="text">
+                    <label>Marker Font Padding</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify the size of the font padding.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="marker_text_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110"
+                       translate="label" type="text">
+                    <label>Marker Font Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Indicate the color of the font which will be used in the description window.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="marker_font" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110"
+                       translate="label" type="text">
+                    <label>Marker Font</label>
+                    <tooltip><![CDATA[<strong>CSS syntax</strong><br>Specify description font style.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="marker_text_shadow" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="111"
+                       translate="label" type="text">
+                    <label>Marker Font Shadow</label>
+                    <tooltip>
+                        <![CDATA[<strong>CSS syntax</strong><br>Indicate dimensions of the description text font shadow.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_divider_11" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="112"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="bg_marker_opacity" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="113"
+                       translate="label" type="text">
+                    <label>Bg Opacity</label>
+                    <tooltip>
+                        <![CDATA[<strong>[0..1]</strong><br>Indicate the transparency level of the description background color.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="bg_marker_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="114"
+                       translate="label" type="text">
+                    <label>Bg Color</label>
+                    <tooltip><![CDATA[<strong>in hex</strong><br>Specify the description background color.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_divider_12" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="115"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="marker_speed" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="116"
+                       translate="label" type="text">
+                    <label>Animation Speed</label>
+                    <tooltip><![CDATA[<strong>in milliseconds</strong><br>Define the animation speed.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_tooltip" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="117"
+                       translate="label" type="hidden">
+                    <label>Tooltip</label>
+                    <comment/>
+                </field>
+                <field id="tooltip_bg_image" translate="label comment" type="image" sortOrder="118" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Bg Image</label>
+                    <tooltip>
+                        <![CDATA[<strong>max size-1024kb</strong><br><strong>'jpg', 'jpeg', 'gif' and 'png' are allowed</strong><br>Upload image file which will be used as the marker on the main photo.]]></tooltip>
+                    <backend_model>Udeytech\Lookbook\Model\Config\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+                </field>
+                <field id="tooltip_bg_image_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="119"
+                       translate="label" type="text">
+                    <label>Bg Image Width</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>specify tooltip background image width.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="tooltip_bg_image_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120"
+                       translate="label" type="text">
+                    <label>Bg Image Height</label>
+                    <tooltip>
+                        <![CDATA[<strong>in pixels</strong><br>specify tooltip background image height.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="tooltip_position" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="121"
+                       translate="label" type="select">
+                    <label>Position</label>
+                    <tooltip>
+                        <![CDATA[<strong>top / bottom</strong><br>Define the positions of the tooltip in relation to the marker.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="tooltip_hor_offset" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="122"
+                       translate="label" type="text">
+                    <label>Horizontal Offset</label>
+                    <tooltip>
+                        <![CDATA[<strong>in pixels</strong><br>This option defines the horizontal displacement of th tooltip.If the offset number is positive - the tooltip moves to the right, if the number is negative - the tooltip is moved to the left]]></tooltip>
+                    <validate>required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="tooltip_text_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="123"
+                       translate="label" type="text">
+                    <label>Font Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Indicate the color of the font which will be used in the tooltip.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="tooltip_font" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="124"
+                       translate="label" type="text">
+                    <label>Font (CSS syntax)</label>
+                    <tooltip><![CDATA[<strong>CSS syntax</strong><br>Specify tooltip font style.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="tooltip_text_shadow" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="125"
+                       translate="label" type="text">
+                    <label>Font Shadow (CSS syntax)</label>
+                    <tooltip>
+                        <![CDATA[<strong>CSS syntax</strong><br>Indicate dimensions of the tooltip text font shadow.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="tooltip_padding_top" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="126"
+                       translate="label" type="text">
+                    <label>Top Padding</label>
+                    <tooltip>
+                        <![CDATA[<strong>in pixels</strong><br>Specify the size of the tooltip top border padding.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_popup" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="127"
+                       translate="label" type="hidden">
+                    <label>Popup</label>
+                    <comment/>
+                </field>
+                <field id="popup_shadow" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="128"
+                       translate="label" type="text">
+                    <label>Popup Shadow (CSS syntax)</label>
+                    <tooltip><![CDATA[<strong>in hex</strong><br>Specify the popup window background color.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="128"
+                       translate="label" type="text">
+                    <label>Popup Background Color</label>
+                    <tooltip><![CDATA[<strong>in hex</strong><br>Specify the popup window background color.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_duration" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="129"
+                       translate="label" type="text">
+                    <label>Popup Duration</label>
+                    <tooltip>
+                        <![CDATA[<strong>in milliseconds</strong><br>Indicate how long the popup window should be displayed until closed automatically.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-10000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="title_divider_70" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="popup_overlay_opacity" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="131"
+                       translate="label" type="text">
+                    <label>Overlay Opacity</label>
+                    <tooltip>
+                        <![CDATA[<strong>[0..1]</strong><br>Indicate the opacity level of the main photo, which will be displayed in the background when the popup window appears.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_overlay_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="131"
+                       translate="label" type="text">
+                    <label>Overlay Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>[0..1]</strong><br>Indicate the opacity level of the main photo, which will be displayed in the background when the popup window appears.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_divider_80" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="132"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Indicate the color which will be applied to the main photo for the opacity effect when the popup window appears.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_border_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="133"
+                       translate="label" type="text">
+                    <label>Border Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Choose the color of the popup window border.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_border_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="134"
+                       translate="label" type="text">
+                    <label>Border Width</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Set up popup border width.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_border_radius" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="135"
+                       translate="label" type="text">
+                    <label>Border Radius</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Set up popup border radius.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="popup_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="136"
+                       translate="label" type="text">
+                    <label>Border Padding</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify the size of the border padding.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="title_divider_90" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="138"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="popup_close" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="139"
+                       translate="label" type="select">
+                    <label>Close Button</label>
+                    <tooltip>
+                        <![CDATA[<strong>enable/disable</strong><br>If you enable this option, the popup window will have the close [x] button.]]></tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment/>
+                </field>
+                <field id="popup_close_image" translate="label comment" type="image" sortOrder="140" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Close Button Image</label>
+                    <tooltip>
+                        <![CDATA[<strong>max size-1024kb</strong><br><strong>'jpg', 'jpeg', 'gif' and 'png' are allowed</strong><br>Upload image file which will be used as the marker on the main photo.]]></tooltip>
+                    <backend_model>Udeytech\Lookbook\Model\Config\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+                    <depends>
+                        <field id="popup_close">1</field>
+                    </depends>
+                    <comment/>
+                </field>
+                <field id="title_divider_95" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="141"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="popup_image_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="142"
+                       translate="label" type="text">
+                    <label>Image Width</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify close button image width.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="popup_image_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="143"
+                       translate="label" type="text">
+                    <label>Image Height</label>
+                    <tooltip><![CDATA[<strong>in pixels</strong><br>Specify close button image height.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-1000 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="title_divider_100" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="145"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="popup_name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="145"
+                       translate="label" type="select">
+                    <label>Popup Name</label>
+                    <tooltip>
+                        <![CDATA[<strong>enable / disable</strong><br>Enable this option to display the name of the product in the popup window.]]></tooltip>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="popup_name_font_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="147"
+                       translate="label" type="text">
+                    <label>Popup Name Font Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Choose the color of the font which will be used for the product name text.]]></tooltip>
+                    <comment/>
+                    <depends>
+                        <field id="popup_name">1</field>
+                    </depends>
+                </field>
+                <field id="popup_name_font" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="148"
+                       translate="label" type="text">
+                    <label>Popup Name Font</label>
+                    <tooltip>
+                        <![CDATA[<strong>CSS syntax</strong><br>Specify font style which will be used in the text of the product name.]]></tooltip>
+                    <comment/>
+                    <depends>
+                        <field id="popup_name">1</field>
+                    </depends>
+                </field>
+                <field id="title_divider_200" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="148"
+                       translate="label" type="hidden">
+                    <label></label>
+                    <comment/>
+                </field>
+                <field id="popup_price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="149"
+                       translate="label" type="select">
+                    <label>Show Popup Price</label>
+                    <tooltip>
+                        <![CDATA[<strong>enable / disable</strong><br>Enable this option to display the product price in the popup window.]]></tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment/>
+                </field>
+                <field id="popup_price_font_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="150"
+                       translate="label" type="text">
+                    <label>Popup Price Font Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Choose the color of the font which will be used for the product price text.]]></tooltip>
+                    <comment/>
+                    <depends>
+                        <field id="popup_price">1</field>
+                    </depends>
+                </field>
+                <field id="popup_price_font" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="151"
+                       translate="label" type="text">
+                    <label>Popup Price Font</label>
+                    <tooltip>
+                        <![CDATA[<strong>CSS syntax</strong><br>Specify font style which will be used in the text of the product price.]]></tooltip>
+                    <comment/>
+                    <depends>
+                        <field id="popup_price">1</field>
+                    </depends>
+                </field>
+                <field id="title_mapster" sortOrder="152" translate="label" type="hidden">
+                    <label>Mapster</label>
+                    <comment/>
+                </field>
+                <field id="mapster_fill_opacity" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="153"
+                       translate="label" type="text">
+                    <label>Fill Opacity</label>
+                    <tooltip>
+                        <![CDATA[<strong>[0..1]</strong><br>Indicate the opacity level of the selected element on the main photo, to which the opacity effect will be applied.]]></tooltip>
+                    <validate>validate-number validate-digits-range digits-range-0-1 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="mapster_fill_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="154"
+                       translate="label" type="text">
+                    <label>Fill Color</label>
+                    <tooltip>
+                        <![CDATA[<strong>in hex</strong><br>Indicate the color which will be applied to the selected element on the main photo for the opacity effect.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="mapster_stroke_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="155"
+                       translate="label" type="text">
+                    <label>Stroke Color</label>
+                    <tooltip><![CDATA[<strong>in hex</strong><br>Choose the color of the stroke.]]></tooltip>
+                    <comment/>
+                </field>
+                <field id="mapster_stroke_opacity" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="156"
+                       translate="label" type="text">
+                    <label>Stroke Opacity</label>
+                    <tooltip><![CDATA[<strong>[0..1]</strong><br>Set up the opacity level of the stroke.]]></tooltip>
+                    <validate>validate-number validate-digits-range digits-range-0-1 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="mapster_stroke_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="157"
+                       translate="label" type="text">
+                    <label>Stroke Width</label>
+                    <tooltip>
+                        <![CDATA[<strong>[0..10] in pixels</strong><br>Define the stroke width dimension.]]></tooltip>
+                    <validate>validate-digits validate-digits-range digits-range-0-10 required-entry</validate>
+                    <comment/>
+                </field>
+                <field id="mapster_fade" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="158"
+                       translate="label" type="select">
+                    <label>Fade</label>
+                    <tooltip>
+                        <![CDATA[<strong>enable / disable</strong><br>If you enable fading, the opacity effect will smoothly fade in.]]></tooltip>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="mapster_fade_duration" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="159"
+                       translate="label" type="text">
+                    <label>Fade Duration</label>
+                    <validate>validate-digits validate-digits-range digits-range-0-10000 required-entry</validate>
+                    <depends>
+                        <field id="mapster_fade">1</field>
+                    </depends>
+                    <comment/>
+                </field>
+            </group>
+            <group id="advanced" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="160" translate="label">
+                <label>Advanced Module Settings</label>
+                <field id="export" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="162" translate="label"
+                       type="button">
+                    <label>Export</label>
+                    <frontend_model>Udeytech\Lookbook\Block\Adminhtml\Config\Form\Export</frontend_model>
+                    <comment/>
+                </field>
+                <field id="import" translate="label comment" type="image" sortOrder="163" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Import</label>
+                    <tooltip>
+                        <![CDATA[<strong>max size-1024kb</strong><br><strong>'jpg', 'jpeg', 'gif' and 'png' are allowed</strong><br>Upload image file which will be used as the marker on the main photo.]]></tooltip>
+                    <backend_model>Udeytech\Lookbook\Model\Config\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+                </field>
+                <field id="reset" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="164" translate="label"
+                       type="button">
+                    <label>Reset</label>
+                    <frontend_model>Udeytech\Lookbook\Block\Adminhtml\Config\Form\Reset</frontend_model>
+                </field>
+                <field id="title_customcss" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="165"
+                       translate="label" type="text">
+                    <label>Custom Styles(CSS)</label>
+                </field>
+                <field id="customcss" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="166"
+                       translate="label" type="text">
+                    <label>Customcss</label>
+                    <comment>HTML Tags are Allowed</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

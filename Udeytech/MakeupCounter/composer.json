@@ -1,0 +1,26 @@
+{
+    "name": "udeytech/module-makeupcounter",
+    "description": "Developed By: Udey Technologies",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Udeytech",
+            "email": "info@udeytceh.com"
+        },
+        {
+            "name": "satendra tyagi",
+            "email": "satendra.kumar@udeytech.in"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Udeytech\\MakeupCounter\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

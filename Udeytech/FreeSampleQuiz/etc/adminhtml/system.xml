@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="productkit" sortOrder="90" translate="label">
+            <label>productkit</label>
+        </tab>
+        <section id="freesamplequiz" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90"
+                 translate="label">
+            <label>Free Sample Quiz</label>
+            <tab>productkit</tab>
+            <resource>Udeytech_FreeSampleQuiz::config_udeytech_freesamplequiz</resource>
+            <group id="general" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="cms_freekit_page" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="select">
+                    <label>CMS FreeKit Page</label>
+                    <comment>Link 'Skip The Quiz'</comment>
+                    <source_model>Udeytech\FreeSampleQuiz\Model\Config\Source\Cms</source_model>
+                </field>
+                <field id="quiz_final_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="textarea">
+                    <label>Quiz Passed Text</label>
+                    <comment/>
+                </field>
+                <field id="base_categories" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="multiselect">
+                    <label>Base Categories</label>
+                    <source_model>Udeytech\FreeSampleQuiz\Model\Config\Source\Categorylist</source_model>
+                    <comment/>
+                </field>
+                <field id="free_sample_color_categories" showInDefault="1" showInStore="1" showInWebsite="1"
+                       sortOrder="10" translate="label" type="multiselect">
+                    <label>Free Sample Color Categories</label>
+                    <source_model>Udeytech\FreeSampleQuiz\Model\Config\Source\Categorylist</source_model>
+                </field>
+            </group>
+            <group id="cms_blocks" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>CMS Blocks</label>
+                <field id="formula_guide_header_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="text">
+                    <label>Header of Formula Guide Block</label>
+                    <comment/>
+                </field>
+                <field id="skin_type_info_header_text" showInDefault="1" showInStore="1" showInWebsite="1"
+                       sortOrder="10" translate="label" type="text">
+                    <label>Header of Skin Type Info Block</label>
+                    <comment/>
+                </field>
+                <field id="makeup_tip_header_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                       translate="label" type="text">
+                    <label>Header of Makeup Tip Block</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="total_customization" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+                   translate="label">
+                <label>Total Customization</label>
+                <field id="freekit_already_in_cart_message" showInDefault="1" showInStore="1" showInWebsite="1"
+                       sortOrder="10" translate="label" type="textarea">
+                    <label>FreeKit Already in Cart Message</label>
+                    <comment/>
+                </field>
+                <field id="bannerimg" translate="label comment" type="image" sortOrder="163" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Banner Image</label>
+                    <tooltip>
+                        <![CDATA[<strong>max size-1024kb</strong><br><strong>'jpg', 'jpeg', 'gif' and 'png' are allowed</strong><br>Upload image file which will be used as the marker on the main photo.]]></tooltip>
+                    <backend_model>Udeytech\Lookbook\Model\Config\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

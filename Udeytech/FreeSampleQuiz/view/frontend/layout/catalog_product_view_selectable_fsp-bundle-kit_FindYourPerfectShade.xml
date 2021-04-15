@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Udeytech_FreeSampleQuiz::css/custom.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="kit-bundle-cms"/>
+        <referenceBlock name="product.info.details" remove="true"/>
+        <referenceBlock name="product.info.options.wrapper" remove="true"/>
+        <referenceBlock name="product.info.type" remove="true"/>
+        <referenceBlock name="product.info.main" remove="true"/>
+        <move element="bundle.options.container" destination="product.info.main" after="product.info.price"/>
+        <container name="product.info.social.wrapper"/>
+        <move element="product.info.social.wrapper" destination="product.info.main" after="bundle.options.container"/>
+        <move element="product.info.social" destination="product.info.social.wrapper"/>
+        <referenceBlock name="customize.button" remove="true"/>
+        <referenceBlock name="gallery.placeholder" remove="true"/>
+        <referenceBlock name="product.info.media" remove="true"/>
+        <referenceBlock name="lip-blam-love" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="freesamplepage"
+                   template="Udeytech_FreeSamplePage::main.phtml">
+                <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="quiz"
+                       template="Udeytech_FreeSampleQuiz::quiz.phtml">
+                    <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="quiz_samples"
+                           template="Udeytech_FreeSampleQuiz::quiz/samples.phtml"/>
+                    <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="quiz_brushes"
+                           template="Udeytech_FreeSampleQuiz::quiz/brushes.phtml"/>
+                    <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="quiz_formulaproducts"
+                           template="Udeytech_FreeSampleQuiz::quiz/formulaproducts.phtml"/>
+                </block>
+                <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit"
+                       template="Udeytech_FreeSamplePage::basekit.phtml">
+                    <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_items"
+                           template="Udeytech_FreeSamplePage::basekit/items.phtml"/>
+                    <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_categories"
+                           template="Udeytech_FreeSamplePage::basekit/categories.phtml"/>
+                    <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_products"
+                           template="Udeytech_FreeSamplePage::basekit/products.phtml"/>
+                    <block class="Udeytech\FreeSamplePage\Block\Basekit" name="basekit_faces"
+                           template="Udeytech_FreeSamplePage::basekit/faces.phtml"/>
+                    <block class="Magento\Cms\Block\Block" name="freesample_basekit_desc_text">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">free-samples-basekit-description-text</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="freesample_formula_guide">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">free-samples-formula-guide-block</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="freesample_skin_type">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">free-samples-skin-type-info-block</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="freesample_makeup_tips">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">free-samples-makeup-tips-block</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$closeupId = $this->getCloseupId();
+$closeup = $this->getCloseup();
+$productId = '56';
+$associatedProductsOptionsHtml = $this->getAssociatedProductsOptionsHtml();
+$selectSize = $this->getAssociatedProductsCount();
+?>
+<form class="closeups-popup" id="closeup_<?php echo $closeupId; ?>"
+      action="http://p1m235.local/admin/adminhtml/closeups/save/">
+    <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>"/>
+    <input type="hidden" name="product_id" value="<?php echo $productId; ?>"/>
+    <input type="hidden" name="closeup[id]" value="<?php echo $closeupId; ?>"/>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo __('Close-ups options'); ?></h4>
+            <div class="form-buttons">
+                <button id="closeup_save_<?php echo $closeupId; ?>" class="scalable save"
+                        onclick="LookBookAdminCloseUps.submit(this); return false;">
+                    <span><?php echo __('Save'); ?></span></button>
+                <button id="closeup_cancel" class="scalable"
+                        onclick="LookBookAdminCloseUps.cancel(this); return false;">
+                    <span><?php echo __('Cancel'); ?></span></button>
+            </div>
+        </div>
+        <div class="fieldset fieldset-wide">
+            <table class="form-list">
+                <tbody>
+                <tr>
+                    <td class="label">
+                        <label for="closeup_night_[<?php echo $closeupId; ?>]"><?php echo __('Night'); ?></label>
+                    </td>
+                    <td class="value">
+                        <input type="checkbox" id="closeup_night_[<?php echo $closeupId; ?>]" name="closeup[night]"
+                               value="1"
+                            <?php echo ($closeup['night'] == 1) ? 'checked' : ''; ?>
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="closeup_day_[<?php echo $closeupId; ?>]"><?php echo __('Day'); ?></label>
+                    </td>
+                    <td class="value">
+                        <input type="checkbox" id="closeup_day_[<?php echo $closeupId; ?>]" name="closeup[day]"
+                               value="1"
+                            <?php echo ($closeup['day'] == 1) ? 'checked' : ''; ?>
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label
+                            for="closeup_associated_products_[<?php echo $closeupId; ?>]"><?php echo __('Associated products'); ?></label>
+                    </td>
+                    <td class="value">
+                        <select id="closeup_associated_products_<?php echo $closeupId; ?>"
+                                name="closeup[associated_products][]"
+                                multiple size="<?php echo $selectSize; ?>">
+                            <?php echo $associatedProductsOptionsHtml; ?>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>

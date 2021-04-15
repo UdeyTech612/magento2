@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$_columnCount = 3;
+$kit = $this->getProduct();
+$items = $this->getBasekitItems();
+?>
+<?php if (isset($items)) : ?>
+    <?php foreach ($items as $key => $_item): ?>
+        <?php print_r($_item->getData()); ?>
+        <ul class="expertkit-categories-box" id="expertkit_categories_box_id_<?php echo $key ?>" style="display: none;">
+        <div class="prev"><span>prev</span></div>
+        <?php $_categories = $_item->getCategoryList(); ?>
+        <?php foreach ($_categories as $category) : ?>
+            <?php $categoryId = $key . '-' . $category['category_id']; ?>
+            <li class="expertkit-category" id="expertkit_category_id_<?php echo $categoryId; ?>">
+                <span><?php echo $category['category_name']; ?></span>
+            </li>
+        <?php endforeach; ?>
+        <div class="next"><span>next</span></div>
+    </ul>
+    <?php endforeach; ?>
+<?php endif; ?>

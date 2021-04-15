@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Udeytech 2020. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Udeytech_FreeSampleQuiz::css/custom.css"/>
+    </head>
+    <referenceContainer name="content">
+        <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="maincms"
+               template="Udeytech_Totalcustomization::main-cms.phtml">
+            <block class="Magento\Cms\Block\Block" name="total_customization_desc_text">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">total-customization-desc-text</argument>
+                </arguments>
+            </block>
+            <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="freekit"
+                   template="Udeytech_Totalcustomization::freekit.phtml">
+                <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="freekit_items"
+                       template="Udeytech_Totalcustomization::freekit/items.phtml"/>
+                <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="freekit_products"
+                       template="Udeytech_Totalcustomization::freekit/products.phtml"/>
+                <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="freekit_categories"
+                       template="Udeytech_Totalcustomization::freekit/categories.phtml"/>
+                <block class="Udeytech\FreeSampleQuiz\Block\Quiz" name="freekit_add_to_cart_button"
+                       template="Udeytech_Totalcustomization::freekit/add_to_cart.phtml"/>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="freesample_formula_guide">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">free-samples-formula-guide-block</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="freesample_skin_type">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">free-samples-skin-type-info-block</argument>
+                </arguments>
+            </block>
+        </block>
+    </referenceContainer>
+</page>

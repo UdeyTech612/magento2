@@ -1,0 +1,109 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$lookbook = $this->getProduct();
+$associatedProducts = $block->getAssociatedProducts();
+$lookbookId = $lookbook->getId();
+$lookBookTypes = array(
+    Udeytech\MakeupCounter\Helper\Data::LOOKBOOK_TYPE_DAY => Udeytech\MakeupCounter\Helper\Data::LOOKBOOK_DAY_ATTR,
+    Udeytech\MakeupCounter\Helper\Data::LOOKBOOK_TYPE_NIGHT => Udeytech\MakeupCounter\Helper\Data::LOOKBOOK_NIGHT_ATTR);
+$_prevUrl = $this->getPrevLookbookUrl();
+$_nextUrl = $this->getNextLookbookUrl();
+$type = $lookbook->getLookType();
+$lookSwitcherLabel = $this->helper('Udeytech\MakeupCounter\Helper\Data')->getTypeByValues($type);
+?>
+<div class="choose-your-look-nav">
+    <div class="day-night-switch-wrap">
+        <div class="day-night-switch">
+            <div class="day-look"><span><?php echo __($lookSwitcherLabel["prev"]) ?></span></div>
+            <div class="look"><span><?php echo __('Look') ?></span></div>
+            <div class="night-look"><span><?php echo __($lookSwitcherLabel["next"]) ?></span></div>
+        </div>
+    </div>
+    <?php if ($_prevUrl != '') : ?>
+        <a href="<?php echo $_prevUrl; ?>" class="look-nav-btn look-skip-previous"
+           title="Prev look"><?php echo __('Prev') ?></a>
+    <?php else : ?>
+        <div class="look-nav-btn look-skip-previous disabled"><?php echo __('Prev') ?></div>
+    <?php endif; ?>
+    <?php if ($_nextUrl != '') : ?>
+        <a href="<?php echo $_nextUrl; ?>" class="look-nav-btn look-skip-next"
+           title="Next look"><?php echo __('Next') ?></a>
+    <?php else : ?>
+        <div class="look-nav-btn look-skip-next disabled"><?php echo __('Next') ?></div>
+    <?php endif; ?>
+</div>
+<?php foreach ($lookBookTypes as $type => $lookAttr) : ?>
+    <?php $lookbookIndex = $type . $lookbookId; ?>
+    <div class="choose-your-look-content" id="lookbook_<?php echo $lookbookIndex; ?>">
+        <div class="hot-spot-btn">Hide hot spots</div>
+        <div class="look-gallery">
+            <ul id="closeups_<?php echo $lookbookIndex; ?>">
+                <li class="closeup-item lookbook" id="lookbook_main_img_<?php echo $lookbookIndex; ?>">
+                    <input type="hidden" id="daylookingindex" name="daylookindex[]"
+                           value="<?php echo $lookbookIndex; ?>"/>
+                    <a><span class="closeup-thumbnail"
+                             style="background-image: url('<?php echo $this->getLookImgSrc($lookAttr); ?>');">
+<img src="<?php ////echo $this->getLookImgSrc($lookAttr); ?>"/></span>
+                    </a>
+                </li>
+                <?php foreach ($this->getCloseups($type) as $closeup) : ?>
+                    <li class="closeup-item" id="closeup_<?php echo $lookbookIndex . '_' . $closeup->getId(); ?>">
+                        <a><span class="closeup-thumbnail"
+                                 style="background-image: url('<?php echo $closeup->getUrl(); ?>');">
+                                <img src="<?php //echo $closeup->getUrl(); ?>"></span></a>
+                        <?php if (is_array($closeup->getAssociatedProducts())) ?>
+                        <?php foreach ($closeup->getAssociatedProducts() as $_itemId) : ?>
+                            <span class="closeup-data" data-productid="<?php echo $_itemId ?>"></span>
+                        <?php endforeach; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="look-preview">
+            <div class="closeup-image" style="display: none;"></div>
+            <div class="look-image">
+                <img id="lookImg_<?php echo $lookbookIndex; ?>" src="<?php echo $this->getLookImgSrc($lookAttr); ?>"/>
+                <?php foreach ($associatedProducts as $_item): ?>
+                    <?php $productData[] = '\"productId\":' . $_item->getId(); ?>
+                    <div class="hot-spot-points"
+                         id="hotspot_point_<?php echo $lookbookIndex; ?>_<?php echo $_item->getId() ?>"
+                         data-productid="<?php echo $_item->getId() ?>" style="left:20px;top:20px;"
+                         data-pos-x="<?php echo $_item->getData($type . '_positions')->getPosX(); ?>"
+                         data-pos-y="<?php echo $_item->getData($type . '_positions')->getPosY(); ?>">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <script>require(['jquery', 'jquery/ui', 'lookbookJss'], function ($) {
+        }); </script>
+<?php endforeach; ?>
+<div class="makeupcounter-customer-options">
+    <button class="show-all-products-btn"><?php echo __('Show All Products in Look'); ?></button>
+    <button class="buy-this-look-btn"
+            data-product-id="<?php //echo $this->getKitProduct()->getId(); ?>"><?php echo __('Show this kit'); ?></button>
+</div>
+<div id="products_box">
+    <?php echo $this->getAssociatedProductsToHtml(); ?>
+    <?php //echo $this->getKitProductToHtml(); ?>
+</div>
+<div class="makeupcounter-look-info">
+    <h2><?php echo $lookbook->getName(); ?></h2>
+    <p><?php echo $lookbook->getDescription(); ?></p>
+</div>
+<?php $datastring = implode(',', $productData); ?>
+<div data-mage-init='{"lookbookJss": {
+    "allAssociatedProducts": "{<?php echo $datastring; ?>}",
+    "lookBookMarkers": "<?php echo $lookbookIndex; ?>",
+    "lookId": "<?php echo $lookbookId; ?>",
+    "type": "<?php echo Udeytech\MakeupCounter\Helper\Data::LOOKBOOK_TYPE_DAY; ?>"
+}
+}'>
+</div>
+<style> .product-detail-statick-block .lip-blam {
+        display: none;
+    }</style>

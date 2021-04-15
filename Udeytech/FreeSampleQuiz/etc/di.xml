@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface"
+                type="Udeytech\FreeSampleQuiz\Model\AnswersRepository"/>
+    <preference for="Udeytech\FreeSampleQuiz\Api\Data\AnswersInterface"
+                type="Udeytech\FreeSampleQuiz\Model\Data\Answers"/>
+    <preference for="Udeytech\FreeSampleQuiz\Api\Data\AnswersSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Udeytech\FreeSampleQuiz\Model\ResourceModel\Answers\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">udeytech_freesamplequiz_answers</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Udeytech\FreeSampleQuiz\Model\ResourceModel\Answers\Collection
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="udeytech_freesamplequiz_answers_listing_data_source" xsi:type="string">
+                    Udeytech\FreeSampleQuiz\Model\ResourceModel\Answers\Grid\Collection
+                </item>
+                <item name="udeytech_freesamplequiz_questions_listing_data_source" xsi:type="string">
+                    Udeytech\FreeSampleQuiz\Model\ResourceModel\Questions\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface"
+                type="Udeytech\FreeSampleQuiz\Model\QuestionsRepository"/>
+    <preference for="Udeytech\FreeSampleQuiz\Api\Data\QuestionsInterface"
+                type="Udeytech\FreeSampleQuiz\Model\Data\Questions"/>
+    <preference for="Udeytech\FreeSampleQuiz\Api\Data\QuestionsSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Udeytech\FreeSampleQuiz\Model\ResourceModel\Questions\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">udeytech_freesamplequiz_questions</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Udeytech\FreeSampleQuiz\Model\ResourceModel\Questions\Collection
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Udeytech\FreeSampleQuiz\HelloWorldImageUpload"
+                 type="Udeytech\FreeSampleQuiz\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">quiz/tmp</argument>
+            <argument name="basePath" xsi:type="string">quiz</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Udeytech\FreeSampleQuiz\Controller\Adminhtml\Index\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Udeytech\FreeSampleQuiz\HelloWorldImageUpload</argument>
+        </arguments>
+    </type>
+</config>

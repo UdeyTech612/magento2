@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Udeytech\Productkit\Api\ProductkitRepositoryInterface"
+                type="Udeytech\Productkit\Model\ProductkitRepository"/>
+    <preference for="Udeytech\Productkit\Api\Data\ProductkitInterface"
+                type="Udeytech\Productkit\Model\Data\Productkit"/>
+    <preference for="Udeytech\Productkit\Api\Data\ProductkitSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Udeytech\Productkit\Model\ResourceModel\Productkit\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">udeytech_productkit_productkit</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Udeytech\Productkit\Model\ResourceModel\Productkit\Collection
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="udeytech_productkit_productkit_listing_data_source" xsi:type="string">
+                    Udeytech\Productkit\Model\ResourceModel\Productkit\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Udeytech\Productkit\HelloWorldImageUpload" type="Udeytech\Productkit\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">logo/tmp</argument>
+            <argument name="basePath" xsi:type="string">logo</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Udeytech\Productkit\Controller\Adminhtml\Index\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Udeytech\Productkit\HelloWorldImageUpload</argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Quote\Model\Quote" type="Udeytech\Productkit\Model\Rewrite\SalesQuote" />
+    <preference for="Magento\Quote\Model\Quote\Item" type="Udeytech\Productkit\Model\Rewrite\SalesQuoteItem" />
+    <preference for="Magento\Quote\Model\Quote\Address" type="Udeytech\Productkit\Model\Rewrite\SalesQuoteAddress" />
+    <preference for="Magento\Sales\Model\Order\Item" type="Udeytech\Productkit\Model\Rewrite\SalesOrderItem" />
+    <preference for="Magento\Catalog\Model\Product\Option\Type\Text" type="Udeytech\Productkit\Model\Rewrite\CatalogProductOptionTypeText" />
+</config>

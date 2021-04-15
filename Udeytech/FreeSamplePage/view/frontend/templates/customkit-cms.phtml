@@ -1,0 +1,62 @@
+<style>
+    .lip-blam .product-detail-statick-block {
+        display: none;
+    }
+</style>
+<?php use Magento\Framework\App\ObjectManager;
+use Magento\Framework\UrlInterface;
+
+$_product = $this->getProduct(); ?>
+<div class="customkit-page free-sample-page">
+    <?php
+    $objectManager = ObjectManager::getInstance();
+    $cartHelper = $this->helper('Magento\Checkout\Helper\Cart');
+    $addToCartUrl = $cartHelper->getAddUrl($_product);
+    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $baseUrl = $storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_WEB);
+    ?>
+    <form data-role="tocart-form" method="post" action="<?php echo $baseUrl; ?>freesamplepage/dbpost/addtocart"
+          id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $block->getBlockHtml('formkey') ?>
+        <div class="no-display">
+            <input type="hidden" name="product" id="mainproduct" value="<?php echo $_product->getId() ?>"/>
+            <input type="hidden" name="related_product" id="related-products-field" value=""/>
+        </div>
+        <div class="customkit-page-content">
+            <div class="customkit-page-customize-kit">
+                <div class="customkit-page-section-title">
+                    <h2><span id="expertkit_title"><?php echo __('Customized kit') ?></span></h2>
+                </div>
+                <div class="customkit-page-section-description">
+                    <?php echo $_product->getDescription(); ?>
+                </div>
+                <div class="customkit-page-section-items">
+                    <!-- Block insert by default -->
+                    <?php echo $this->getChildHtml('basekit_items') ?>
+                </div>
+                <div class="customkit-page-section-item-box">
+                    <div class="customkit-page-section-item-categories">
+                        <!--  Block insert by default and hide -->
+                        <?php echo $this->getChildHtml('basekit_categories') ?>
+                    </div>
+                    <div class="customkit-page-section-item-category-products">
+                        <!--  Block insert by default and hide -->
+                        <div id="expert_kit_item_products_container">
+                            <?php echo $this->getChildHtml('basekit_products') ?>
+                        </div>
+                    </div>
+                    <div class="expertkit-addtocart-action" id="basekit_addtocart_action" style="display: none">
+                        <div class="qty-box clearfix">
+                            <label for="expertkit_qty"
+                                   class="expertkit-qty-label"><?php echo __('Quantity selected kit'); ?></label>
+                            <input type="text" id="expertkit_qty" name="qty" value="1" class="expertkit-qty"/>
+                        </div>
+                        <button>
+                            <span><?php echo __('Add to basket'); ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

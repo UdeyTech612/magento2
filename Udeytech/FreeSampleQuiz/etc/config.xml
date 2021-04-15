@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <freesamplequiz>
+            <general>
+                <cms_freekit_page/>
+                <quiz_final_text/>
+                <base_categories/>
+                <free_sample_color_categories/>
+            </general>
+            <cms_blocks>
+                <formula_guide_header_text/>
+                <skin_type_info_header_text/>
+                <makeup_tip_header_text/>
+            </cms_blocks>
+            <total_customization>
+                <freekit_already_in_cart_message/>
+                <banner/>
+            </total_customization>
+        </freesamplequiz>
+    </default>
+</config>

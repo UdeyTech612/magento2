@@ -1,0 +1,161 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//$_product = Mage::registry('current_product');
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Registry;
+$_product = ObjectManager::getInstance()->get(Registry::class)->registry('current_product');
+?>
+<?php $_associatedProducts = $this->getAssociatedProducts(); ?>
+<div id="group-image">
+    <img src="<?php echo $this->helper('Magento/Catalog/Helper/Image')->init($_product, 'udeytech_lookbook_image') ?>"
+         width="100%"/>
+    <?php foreach ($_associatedProducts as $_item): ?>
+        <div class="group-plus" id="plus_<?php echo $_item->getEntityId() ?>"
+             data-productid="<?php echo $_item->getEntityId() ?>" style="left:20px;top:20px;"
+             data-pos-x="<?php echo $_item->getPositions()->getPosX(); ?>"
+             data-pos-y="<?php echo $_item->getPositions()->getPosY(); ?>"></div>
+        <canvas class="group-canvas" id="canvas_<?php echo $_item->getEntityId() ?>"
+                data-product-id="<?php echo $_item->getEntityId() ?>" width="100%"></canvas>
+    <?php endforeach; ?>
+</div>
+<div class="group-prod-items-container" width="100%">
+    <?php foreach ($_associatedProducts as $_item): ?>
+        <div class="group-prod-image" id="image_<?php echo $_item->getEntityId() ?>"
+             data-productid="<?php echo $_item->getEntityId() ?>">
+            <?php if ($image = $this->getItemImage($_item)): ?>
+                <div class="img">
+                    <img src="<?php echo $image ?>"/>
+                </div>
+            <?php endif; ?>
+            <div class="desc">
+                <div><strong><?php echo $_item->getName() ?></strong></div>
+                <div><?php echo 'SKU: ' . $_item->getSku() ?></div>
+                <div><?php echo 'Price: ' . $_item->getFinalPrice() ?></div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+<div style="display:none;">
+    <?php foreach ($_associatedProducts as $_item): ?>
+        <input id="positionX_<?php echo $_item->getEntityId() ?>"
+               name="associated_products[<?php echo $_item->getEntityId() ?>][pos_x]"
+               value="<?php echo $_item->getPositions()->getPosX(); ?>"/>
+        <input id="positionY_<?php echo $_item->getEntityId() ?>"
+               name="associated_products[<?php echo $_item->getEntityId() ?>][pos_y]"
+               value="<?php echo $_item->getPositions()->getPosY(); ?>"/>
+        <input class="map_input" data-productid="<?php echo $_item->getEntityId() ?>"
+               id="map_<?php echo $_item->getEntityId() ?>"
+               name="associated_products[<?php echo $_item->getEntityId() ?>][map]"
+               value="<?php echo $_item->getPositions()->getMap(); ?>"/>
+    <?php endforeach; ?>
+</div>
+<script>
+    $$('.group-plus').each(function (m) {
+        m.hide();
+    });
+    $$('.group-prod-image').each(function (el) {
+        el.observe('click', function (k) {
+            canvasInit();
+            $$('.group-prod-image').each(function (m) {
+                m.removeClassName('selected');
+            });
+            $$('.group-plus').each(function (m) {
+                m.hide();
+            });
+            jUdey('#plus_' + jUdey(el).attr('data-productid')).show();
+            jUdey('.group-canvas').hide();
+            jUdey('#canvas_' + jUdey(el).attr('data-productid') + ' canvas').attr('width', jUdey('#group-image').width()).attr('height', jUdey('#group-image').height());
+            jUdey('#canvas_' + jUdey(el).attr('data-productid')).show();
+            el.addClassName('selected');
+            repositionElements();
+        });
+    });
+    jUdey('.group-plus').draggable({
+        containment: "#group-image",
+        scroll: false,
+        stop: function () {
+            tmp_el = jUdey(this);
+            currentY = (jUdey(this).position().top + jUdey(this).height() / 2) / jUdey('#group-image').height();
+            currentX = (jUdey(this).position().left + jUdey(this).width() / 2) / jUdey('#group-image').width();
+            jUdey('#positionX_' + tmp_el.attr('data-productid')).attr('value', currentX);
+            jUdey('#positionY_' + tmp_el.attr('data-productid')).attr('value', currentY);
+            //console.log(currentX+':'+currentY);
+        }
+    }).addClass('ui-widget-content');
+    repositionElements();
+    jUdey(window).resize(function () {
+        repositionElements();
+    });
+    jUdey(document).ready(function () {
+        // setTimeout( function(){
+        //jUdey('#group-image canvas').attr('width', '400').attr('height', '300');
+        //jUdey('.canvas-area[data-image-url]').canvasAreaDraw();
+        //},1500);
+        //convertToPixels();
+        jUdey('#group-image canvas').each(function () {
+            id = jUdey(this).attr('data-product-id');
+            jUdey(this).canvasArea({'input_selector': '#map_' + id});
+        });
+        //var canvasObject = jUdey(".canvas-area[data-image-url]").canvasAreaDraw();
+    });
+
+    function convertToPercents() {
+        jUdey('.group-canvas').each(function () {
+            id = jUdey(this).attr('data-productid');
+            tmp = jUdey(this).find('input').val();
+            coords_array = tmp.split(',');
+            console.log(coords_array);
+            new_array = [];
+            for (var i = 0; i < coords_array.length; i++) {
+                new_array.push(coords_array[i] / jUdey('#group-image img').width());
+                i++;
+                new_array.push(coords_array[i] / jUdey('#group-image img').height());
+            }
+            //console.log(new_array);
+            jUdey('#map_' + id).val(new_array.join());
+        });
+
+    }
+
+    function convertToPixels() {
+        jUdey('.map_input').each(function () {
+            id = jUdey(this).attr('data-productid');
+            tmp = jUdey(this).val();
+            percents_array = tmp.split(',');
+            //console.log(percents_array);
+            new_array = [];
+            for (var i = 0; i < percents_array.length; i++) {
+                new_array.push(parseInt(percents_array[i] * jUdey('#group-image img').width()));
+                i++;
+                new_array.push(parseInt(percents_array[i] * jUdey('#group-image img').height()));
+            }
+            //console.log(new_array);
+            jUdey('#canvas_' + id + ' input').attr('value', new_array.join());
+        });
+
+    }
+
+    var canvasInitFlag = false;
+
+    function canvasInit() {
+        convertToPixels();
+        if (!canvasInitFlag) {
+            //jUdey(".canvas-area[data-image-url]").canvasAreaDraw();
+            canvasInitFlag = true;
+        }
+
+    }
+
+    function repositionElements() {
+        jUdey('.group-plus').each(function () {
+            id = jUdey(this).attr('data-productid');
+            newX = jUdey('#positionX_' + id).attr('value') * jUdey('#group-image').width() - (jUdey(this).width() / 2);
+            newY = jUdey('#positionY_' + id).attr('value') * jUdey('#group-image').height() - (jUdey(this).height() / 2);
+            jUdey(this).css({left: newX + 'px', top: newY + 'px'});
+        });
+    }
+</script>

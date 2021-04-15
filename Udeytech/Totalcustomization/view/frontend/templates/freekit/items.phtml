@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$_columnCount = 3;
+$items = $this->getFreeKitItems();
+?>
+<ul class="freekit-items-box" id="freekit_items_box_id">
+    <?php if (isset($items)) : ?>
+        <?php $key = 0;
+        foreach ($items as $_item): ?>
+            <?php $key++; ?>
+            <li class="freekit-item <?php echo (($key - 1) % $_columnCount == 0) ? 'left' : (($key % $_columnCount == 0) ? 'center' : 'center') ?>"
+                id="freekit_item_id_<?php echo $key ?>">
+                <div class="category-name">
+                    <span><?php echo (isset($_item['item_name'])) ? __($_item['item_name']) : '' ?></span>
+                </div>
+                <div class="empty">
+                    <span>
+                        <?php echo __('Select') ?>
+                        <span class="key"><?php echo $key; ?></span>
+                        <?php echo __('color') ?>
+                    </span>
+                </div>
+                <div class="content" style="display: none">
+                    <div class="wrap"></div>
+                    <i class="freekit-reset-item-button"></i>
+                </div>
+                <div class="clr"></div>
+                <div class="validation-notice" style="display: none">
+                    <span>
+                        <?php echo __('Select product') ?>
+                        <span class="key"><?php echo __('to') ?></span>
+                        <?php echo __('complete kit') ?>
+                    </span>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>

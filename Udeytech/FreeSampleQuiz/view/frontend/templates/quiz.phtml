@@ -1,0 +1,228 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$_quizHelper = $this->helper('Udeytech\FreeSampleQuiz\Helper\Config');
+$_quizHelp = $this->helper('Udeytech\FreeSampleQuiz\Helper\Data');
+$freeColorCount = 3;
+$quiz_step_finishTEXT = $_quizHelper->getFinalTxt();
+$questions = $this->getQuestions();
+$associatedCodesJSON = $this->getAssociatedCodesJSON();
+$basesCategoriesCollection = $this->getBasesCategoryCollection();
+?>
+<div class="quiz clearfix">
+    <div class="quiz-start" id="quiz_step_start">
+        <div class="panel">
+            <h2><?php echo __('Base finder') . '<span></span>' . __('Sample kit'); ?></h2>
+            <p><?php echo __('Create your') . ' ' . '<span>' . __('Free sample kit') . '</span>'; ?></p>
+            <p><?php echo __('Find your recommended shades'); ?></p>
+            <div class="quiz-start-action">
+                <button class="quiz-start-btn"><span><?php echo __('Start'); ?></span></button>
+            </div>
+            <a href="<?php echo $this->getSkipUrl(); ?>"
+               class="quiz-skip-link"><span><?php echo __('Skip the quiz'); ?></span></a>
+        </div>
+    </div>
+    <?php foreach ($questions as $question) : ?>
+        <div class="quiz-question quiz-<?php echo $question->getId(); ?>"
+             id="quiz_step_question_<?php echo $question->getId(); ?>" style="display: none;">
+            <h2><?php echo __($question->getTitle()); ?></h2>
+            <div class="panel">
+                <p><?php echo __($question->getDescription()); ?></p>
+                <ul class="action">
+                    <?php $answers = $this->getAnswerCollection($question->getId()); ?>
+                    <?php $i = 1;
+                    foreach ($answers as $answer) : ?>
+                        <?php $src = $_quizHelp->getImgUrl($answer->getThumb()); ?>
+                        <?php $code = $answer->getAssociatedCodes(); ?>
+                        <li class="quiz-answer">
+                            <button class="btn quiz-answers" data-id="<?php echo $code; ?>">
+                                <span style="background-image: url('<?php echo $src; ?>');">
+                                   <?php echo $answer->getTitle(); ?>
+                                </span>
+                            </button>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <style>
+            <?php  ($answers->count())  ? $itemWidth = 100 / $answers->count() . '%' : $itemWidth = 0 ;?>
+            .quiz-<?php echo $question->getId(); ?> li {
+                width: <?php echo $itemWidth; ?>;
+            }
+        </style>
+    <?php endforeach; ?>
+    <div class="quiz-formula" id="quiz_step_formula" style="display: none;">
+        <h2><?php echo __('YOUR RECOMMENDED BASES'); ?></h2>
+        <div class="panel bases">
+            <?php echo $this->getChildHtml('quiz_formulaproducts'); ?>
+        </div>
+        <div class="panel formula">
+            <h3><?php echo __('SELECT YOUR FORMULA'); ?></h3>
+            <ul class="select" id="formula_select">
+                <?php foreach ($basesCategoriesCollection as $category) : ?>
+                    <li class="item" data-formula="<?php echo $category->getId(); ?>">
+                        <div class="fake-btn"><span><?php echo __($category->getName()); ?></span></div>
+                        <div class="content"></div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <div id="formula_small_content_box"></div>
+            <div id="formula_options" style="display: none">
+                <?php foreach ($basesCategoriesCollection as $category) : ?>
+                    <div id="formula_option_<?php echo $category->getId(); ?>">
+                        <div class="content">
+                            <p><?php echo __($category->getDescription()); ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="formula-btn-wrap">
+            <button class="formula-btn" id="formula_btn">
+                <span><?php echo __('Next step'); ?></span>
+            </button>
+        </div>
+    </div>
+    <div class="quiz-color" id="quiz_step_color" style="display: none;">
+        <h2><?php echo __('Select your free color samples'); ?></h2>
+        <div class="quizkit-item-tabs" id="quizkit_item_tabs" style="display: none"></div>
+        <ul class="items-box">
+            <?php $key = 0;
+            foreach ($this->getFreeColorSamplesByCategories() as $categoryId => $category): ?>
+                <?php $key++ ?>
+                <li class="quizkit-item <?php echo (($key - 1) % $freeColorCount == 0) ? 'left' : (($key % $freeColorCount == 0) ? 'right' : 'center') ?>"
+                    id="quizkit_item_id_<?php echo $categoryId ?>">
+                    <div class="category-name" data-item-id="<?php echo $categoryId ?>">
+                        <span><?php echo $category['category_name']; ?></span>
+                    </div>
+                    <div class="empty">
+<span>
+<?php echo __('Select') ?>
+<span class="key"><?php echo $key; ?></span>
+<?php echo __('color') ?>
+</span>
+                    </div>
+                    <div class="content" style="display: none">
+                        <div class="wrap"></div>
+                        <i class="quizkit-reset-item-button"></i>
+                    </div>
+                    <span class="quiz-circle"></span>
+                    <div class="validation-notice" style="display: none">
+<span>
+<?php echo __('Select product') ?>
+<span class="key"><?php echo __('to') ?></span>
+<?php echo __('complete kit') ?>
+</span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="free-coolor-samples" style="display: none;">
+            <?php echo $this->getChildHtml('quiz_samples'); ?>
+        </div>
+        <div class="final-btn-wrap">
+            <button class="final-btn">
+                <span><?php echo __('Final step'); ?></span>
+            </button>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <div class="quiz-basket clearfix" id="quiz_step_basket" style="display: none;">
+        <ul class="quiz-basket-list">
+            <li class="quizkit left" id="quiz_add_brush">
+                <div class="empty">
+                    <div class="text-wrap">
+                        <span><?php echo __('Would you Like to add a brush?') ?></span>
+                    </div>
+                </div>
+                <div class="content" style="display: none">
+                    <div class="wrap"></div>
+                    <i class="quizkit-brash-reset" id="quizkit_brash_remove_btn"></i>
+                </div>
+            </li>
+            <li class="quizkit center" id="quiz_add_to_cart">
+                <div class="empty">
+                    <div class="text-wrap">
+                        <span><?php echo __('Add kit to basket') ?></span>
+                    </div>
+                </div>
+            </li>
+            <li class="quizkit right" id="quiz_goto_makeupcounter">
+                <a class="empty" href="http://p1m235.local/makeup-diary-austin-look.html">
+                    <div class="text-wrap">
+                        <span><?php echo __('Checkout makeup counter') ?></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="quiz-brushes-wrap" style="display: none;">
+            <?php echo $this->getChildHtml('quiz_brushes'); ?>
+        </div>
+        <div class="again-btn-wrap">
+            <button class="again-btn">
+                <span><?php echo __('Want to try again?'); ?></span>
+            </button>
+        </div>
+    </div>
+    <div class="quiz-finish" id="quiz_step_finish"
+         style="display: none; background-image: url('<?php echo $_quizHelp->getMediaUrl() . "images/quiz/congrats.png"; ?>');">
+        <div class="overlay"></div>
+        <div class="panel">
+            <h2><?php echo __('LOVELY!'); ?></h2>
+            <p><?php echo __($quiz_step_finishTEXT); ?></p>
+        </div>
+    </div>
+    <div class="quiz-paginator" id="quiz_paginator" style="display: none;">
+        <div class="prev-btn"><span class="icon-left-open-big"></span></div>
+        <ul class="points">
+            <li class="point"></li>
+            <li class="point"></li>
+        </ul>
+    </div>
+</div>
+<div data-mage-init='{"quiz": {
+"associatedCodes": <?php echo $associatedCodesJSON; ?>,
+"steps": {
+"2": "$(\"#quiz_step_start\")",
+"3": "$(\"#quiz_step_question_1\")",
+"4": "$(\"#quiz_step_question_2\")",
+"5": "$(\"#quiz_step_question_3\")",
+"6": "$(\"#quiz_step_question_4\")",
+"7": "$(\"#quiz_step_formula\")",
+"8": "$(\"#quiz_step_color\")",
+"9": "$(\"#quiz_step_basket\")",
+"10": "$(\"#quiz_step_finish\")"
+},
+"paginator": "$(\"#quiz_paginator\")",
+"addBrushItem": "$(\"#quiz_add_brush\")",
+"gotoMakeupcounterItem": "$(\"#quiz_goto_makeupcounter\")",
+"brushesWrap": "$(\".quiz-brushes-wrap\")",
+"brushesBox": "$(\"#quizkit_brush_products_box\")",
+"brushesProductIdPrefix": "\"quizkit_brush_product_id_\"",
+"brushes": "$(\".quizkit-brush-product\")",
+"removeBtn": "$(\"#quizkit_brash_remove_btn\")",
+"items": "$(\".quizkit-item\")",
+"itemIdPrefix": "\"quizkit_item_id_\"",
+"products": "$(\".quizkit-select-product\")",
+"removeBtn": "$(\".quizkit-reset-item-button\")",
+"samplesBox": "$(\".quizkit-select-products-box\")",
+"sampleBoxIdPrefix": "\"quizkit_select_products_box_id_\"",
+"sampleProducts": "$(\".quizkit-select-product\")",
+"sampleProductIdPrefix": "\"quizkit_select_product_id_\"",
+"tabsBox": "$(\"#quizkit_item_tabs\")",
+"addToCartItem": "$(\"#quiz_add_to_cart\")",
+"select": "$(\"#formula_select\")",
+"options": "$(\"#formula_options\")",
+"button": "$(\"#formula_btn\")",
+"content": "$(\"#formula_small_content_box\")",
+"productsf": "$(\".quizkit-formula-product\")",
+"productsContentBox": "$(\"#formula_products_box\")",
+"productIdPrefix": "\"formula_product_id_\"",
+"firstProduct": "$(\"#formula_product_first\")",
+"lastProduct": "$(\"#formula_product_last\")",
+"isFreeKitDuplicateCheckUrl": "<?php echo $this->isFreeKitDuplicateCheckUrl(); ?>"
+}
+}'></div>

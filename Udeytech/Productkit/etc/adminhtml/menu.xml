@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Udeytech::top_level"
+             module="Udeytech_Productkit"
+             resource="Magento_Backend::content"
+             sortOrder="11"
+             title="Udeytech Productkit"/>
+        <add action="udeytech_productkit/productkit/index"
+             id="Udeytech_Productkit::udeytech_productkit_productkit"
+             module="Udeytech_Productkit"
+             parent="Udeytech::top_level"
+             resource="Magento_Backend::content"
+             sortOrder="12"
+             title="Productkit Choose by Expert"/>
+        <add action="udeytech_freesamplequiz/questions/index"
+             id="Udeytech_FreeSampleQuiz::udeytech_freesamplequiz_questions"
+             module="Udeytech_FreeSampleQuiz"
+             parent="Udeytech::top_level"
+             resource="Magento_Backend::content"
+             sortOrder="13"
+             title="Manage Quiz Questions"/>
+        <add action="udeytech_freesamplequiz/answers/index"
+             id="Udeytech_FreeSampleQuiz::udeytech_freesamplequiz_answers"
+             module="Udeytech_FreeSampleQuiz"
+             parent="Udeytech::top_level"
+             resource="Magento_Backend::content"
+             sortOrder="14"
+             title="Manage Quiz Answers"/>
+    </menu>
+</config>

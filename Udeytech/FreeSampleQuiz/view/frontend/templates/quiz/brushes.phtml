@@ -1,0 +1,38 @@
+<?php use Magento\Framework\App\ObjectManager;
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$products = $block->getBrushesWithDiscount(); ?>
+<ul class="quizkit-brush-products-box" id="quizkit_brush_products_box">
+    <?php if ($products) : ?>
+        <?php foreach ($products as $_product): ?>
+            <div id="owl-demo<?php echo $_product->getId() ?>" data-mage-init='{
+"OwlCarousel":{
+"autoPlay": 3000,
+"items" : 3,
+"itemsDesktop" : [1199,3],
+"itemsDesktopSmall" : [979,3]
+}
+}
+'>
+        <li class="quizkit-brush-product" id="quizkit_brush_product_id_<?php echo $_product->getId() ?> >
+            <?php $_imgSrc = $config->getProductImageUrl($_product->getId()); ?>
+            <h3 class=" product-name
+            "><?php $om = ObjectManager::getInstance();
+            $pdata = $om->create('Magento\Catalog\Model\Product')->load($_product->getId());
+            echo $pdata->getName(); ?></h3>
+            <img src="<?php echo $_imgSrc; ?>" width="220" height="220" alt=""/>
+            <div class="quizkit-brush-price clearfix">
+                <div class="quizkit-brush-price-default">
+                    <?php echo $this->getPriceHtml($_product); ?>
+                </div>
+                <div class="quizkit-brush-price-discounted">
+                    <?php //echo Mage::helper('core')->currency($_product->getDiscountedPrice(), true, false); ?>
+                </div>
+            </div>
+        </li>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>

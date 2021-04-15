@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/udeytech-freesamplequiz/answers">
+        <service class="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Answers_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/udeytech-freesamplequiz/answers/search">
+        <service class="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Answers_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/udeytech-freesamplequiz/answers/:answersId">
+        <service class="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Answers_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/udeytech-freesamplequiz/answers/:answersId">
+        <service class="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Answers_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/udeytech-freesamplequiz/answers/:answersId">
+        <service class="Udeytech\FreeSampleQuiz\Api\AnswersRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Answers_delete"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/udeytech-freesamplequiz/questions">
+        <service class="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Questions_save"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/udeytech-freesamplequiz/questions/search">
+        <service class="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Questions_view"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/udeytech-freesamplequiz/questions/:questionsId">
+        <service class="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Questions_view"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/udeytech-freesamplequiz/questions/:questionsId">
+        <service class="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Questions_update"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/udeytech-freesamplequiz/questions/:questionsId">
+        <service class="Udeytech\FreeSampleQuiz\Api\QuestionsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Udeytech_FreeSampleQuiz::Questions_delete"/>
+        </resources>
+    </route>
+</routes>

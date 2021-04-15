@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\ObjectManager;
+$om = ObjectManager::getInstance();
+$formulaProductsByCategories = $this->getFormulaProductsByCategories();
+$config = $this->helper('Udeytech\Totalcustomization\Helper\Data');
+$_quizHelp = $this->helper('Udeytech\FreeSampleQuiz\Helper\Data');
+?>
+<ul id="formula_products_box" style="display: none">
+    <?php foreach ($formulaProductsByCategories as $_product) : ?>
+        <li class="quizkit-formula-product" data-categories="<?php echo $_product->getData('category_id'); ?>"
+            id="formula_product_id_<?php echo $_product->getId() ?>">
+            <?php $_imgSrc = $config->getProductImageUrl($_product->getId()); ?>
+            <div class="bases-img" style="background-image: url('<?php echo $_imgSrc; ?>');"><img
+                    src="<?php echo $_imgSrc; ?>"></div>
+            <div class="bases-info">
+                <h4 class="bases-name">
+                    <?php $pdata = $om->create('Magento\Catalog\Model\Product')->load($_product->getId());
+                    echo $pdata->getName(); ?>
+                </h4>
+            </div>
+        </li>
+    <?php endforeach; ?>
+</ul>
+<div class="first" id="formula_product_first">
+    <div class="empty">
+        <div class="bases-img"
+             style="background-image: url('<?php echo $_quizHelp->getMediaUrl() . "images/quiz/empty.png" ?>');">
+        </div>
+        <div class="bases-info">
+            <h4 class="bases-text"><?php echo __("Your shade is:"); ?></h4>
+            <h4 class="bases-code"><?php echo __("8X"); ?></h4>
+        </div>
+    </div>
+    <div class="content"></div>
+</div>
+<div class="last" id="formula_product_last">
+    <div class="empty">
+        <div class="bases-img"
+             style="background-image: url('<?php echo $_quizHelp->getMediaUrl() . "images/quiz/empty.png" ?>');">
+        </div>
+        <div class="bases-info">
+            <h4 class="bases-text"><?php echo __("Your shade is:"); ?></h4>
+            <h4 class="bases-code"><?php echo __("8X"); ?></h4>
+        </div>
+    </div>
+    <div class="content"></div>
+</div>
+
+
+
+
+

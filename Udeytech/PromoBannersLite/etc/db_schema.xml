@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="udeytech_promobannerslite_banners" resource="default" engine="innodb" comment="udeytech_promobannerslite_banners Table">
+		<column xsi:type="smallint" name="banners_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="banners_id"/>
+		</constraint>
+		<column name="utbanner_id" nullable="true" xsi:type="int" comment="utbanner_id" identity="false"/>
+		<column name="rule_id" nullable="true" xsi:type="text" comment="rule_id"/>
+		<column name="utbannerslite_banner_type" nullable="true" xsi:type="text" comment="utbannerslite_banner_type"/>
+		<column name="utbannerslite_top_banner_enable" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_enable"/>
+		<column name="utbannerslite_label_enable" nullable="true" xsi:type="text" comment="utbannerslite_label_enable"/>
+		<column name="utbannerslite_after_name_banner_enable" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_enable"/>
+		<column name="utbannerslite_banner_categories" nullable="true" xsi:type="text" comment="utbannerslite_banner_categories"/>
+		<column name="utbannerslite_banner_products" nullable="true" xsi:type="text" comment="utbannerslite_banner_products"/>
+		<column name="utbannerslite_top_banner_img" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_img"/>
+		<column name="utbannerslite_top_banner_alt" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_alt"/>
+		<column name="utbannerslite_top_banner_hover_text" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_hover_text"/>
+		<column name="utbannerslite_top_banner_link" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_link"/>
+		<column name="utbannerslite_top_banner_gift_images_enable" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_gift_images_enable"/>
+		<column name="utbannerslite_top_banner_description" nullable="true" xsi:type="text" comment="utbannerslite_top_banner_description"/>
+		<column name="utbannerslite_after_name_banner_img" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_img"/>
+		<column name="utbannerslite_after_name_banner_alt" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_alt"/>
+		<column name="utbannerslite_after_name_banner_hover_text" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_hover_text"/>
+		<column name="utbannerslite_after_name_banner_link" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_link"/>
+		<column name="utbannerslite_after_name_banner_gift_images_enable" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_gift_images_enable"/>
+		<column name="utbannerslite_after_name_banner_description" nullable="true" xsi:type="text" comment="utbannerslite_after_name_banner_description"/>
+		<column name="utbannerslite_label_img" nullable="true" xsi:type="text" comment="utbannerslite_label_img"/>
+		<column name="utbannerslite_label_alt" nullable="true" xsi:type="text" comment="utbannerslite_label_alt"/>
+	</table>
+</schema>

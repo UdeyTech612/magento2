@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright (c) 2021. Udeytech Technologies All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\ObjectManager;
+$_productCollection = $this->getLoadedProductCollection();
+$currentKitId = $this->getCurrentKitId();
+$currentCategoryPosition = $this->getCurrentCategoryPosition();
+$currentCategoryId = $this->getCurrentCategory()->getId();
+$sliderId = $currentKitId . "-" . $currentCategoryPosition . "-" . $currentCategoryId;
+?>
+<ul class="expertkit-select-products-box" id="expertkit_select_products_box_id_<?php echo $sliderId; ?>"
+    style="display: none;">
+    <?php foreach ($_productCollection as $_product): ?>
+
+        <li class="expertkit-select-product" id="expertkit_select_product_id_<?php echo $_product->getId() ?>">
+            <?php
+            $objectManager = ObjectManager::getInstance();
+            $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+            $_productModel = $productCollection->load($_product->getId()) ?>
+            <?php $_imgSrc = $this->helper('Magento/Catalog/Helper/Image')->init($_productModel, 'small_image')->resize(220) ?>
+            <h3 class="product-name"><?php //echo $_helper->productAttribute($_productModel, $_productModel->getName(), 'name') ?></h3>
+            <img src="<?php echo $_imgSrc; ?>" width="220" height="220"
+                 alt="<?php echo $this->stripTags($this->getImageLabel($_productModel, 'small_image'), null, true) ?>"/>
+            <h4 class="product-price"><?php echo $this->prepareProductKitPrice($_productModel); ?></h4>
+        </li>
+
+    <?php endforeach; ?>
+</ul>
+<script>
+    $(document).ready(function () {
+        $('.expertkit-select-product').on('click', function () {
+            ExpertKit.addSelectedProduct(this);
+        });
+        $('#expertkit_select_products_box_id_<?php echo $sliderId; ?>').owlCarousel({
+            items: 3,
+            itemsTablet: [1199, 2],
+            itemsMobile: [769, 1],
+            stopOnHover: true,
+            navigation: true,
+            dots: false,
+            navigationText: True,
+            pagination: false,
+            rewindNav: false
+        });
+        $('#expertkit_select_products_box_id_<?php echo $sliderId; ?>').hide();
+    });
+</script>

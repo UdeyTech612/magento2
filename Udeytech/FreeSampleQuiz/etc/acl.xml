@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Udeytech_FreeSampleQuiz::Answers" sortOrder="10" title="Answers">
+                    <resource id="Udeytech_FreeSampleQuiz::Answers_save" sortOrder="10" title="Save Answers"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Answers_delete" sortOrder="20" title="Delete Answers"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Answers_update" sortOrder="30" title="Update Answers"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Answers_view" sortOrder="40" title="View Answers"/>
+                </resource>
+                <resource id="Udeytech_FreeSampleQuiz::Questions" sortOrder="10" title="Questions">
+                    <resource id="Udeytech_FreeSampleQuiz::Questions_save" sortOrder="10" title="Save Questions"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Questions_delete" sortOrder="20" title="Delete Questions"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Questions_update" sortOrder="30" title="Update Questions"/>
+                    <resource id="Udeytech_FreeSampleQuiz::Questions_view" sortOrder="40" title="View Questions"/>
+                </resource>
+                <resource id="Udeytech_FreeSampleQuiz::quiz" sortOrder="10" title="quiz">
+                    <resource id="Udeytech_FreeSampleQuiz::answers_index" sortOrder="10" title="answers index"/>
+                    <resource id="Udeytech_FreeSampleQuiz::questions_index" sortOrder="10" title="questions index"/>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Udeytech_FreeSampleQuiz::config_udeytech_freesamplequiz"
+                                      title="freesamplequiz"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2021. Udeytech Technologies All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Udeytech_MakeupCounter::closeupscontroller" sortOrder="10" title="closeupscontroller">
+                    <resource id="Udeytech_MakeupCounter::closeups_closeups" sortOrder="10" title="closeups closeups"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

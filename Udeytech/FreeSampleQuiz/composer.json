@@ -1,0 +1,26 @@
+{
+    "name": "udeytech/module-freesamplequiz",
+    "description": "Free Sample Quiz",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "satendra.tyagi1986@gmail.com",
+            "name": "satendra tyagi"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Udeytech\\FreeSampleQuiz\\": ""
+        }
+    }
+}
